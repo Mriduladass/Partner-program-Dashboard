@@ -3,1031 +3,1086 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Merchant Pricing — PayGlocal Partner Program</title>
+<title>PayGlocal Partner Program</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" rel="stylesheet">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-:root {
-  --blue: #0061e3;
-  --blue-hover: #0052c2;
-  --blue-light: #eff6ff;
-  --blue-mid: #dbeafe;
-  --sidebar-bg: #1a2540;
-  --sidebar-hover: rgba(255,255,255,0.06);
-  --sidebar-active-bg: #0061e3;
-  --text-primary: #0f172a;
-  --text-secondary: #64748b;
-  --text-muted: #94a3b8;
-  --border: #e4e9f2;
-  --bg-page: #f1f5fb;
-  --bg-white: #ffffff;
-  --bg-surface: #f8fafc;
-  --radius-sm: 8px;
-  --radius-md: 10px;
-  --radius-lg: 14px;
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
-  --shadow-md: 0 4px 16px rgba(0,0,0,0.10);
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --blue:#0061e3;--blue-h:#0052c2;--blue-light:#eff6ff;--blue-mid:#dbeafe;
+  --sidebar:#1a2540;--sidebar-active:#0061e3;
+  --tp:#0f172a;--ts:#64748b;--tm:#94a3b8;
+  --border:#e4e9f2;--bg:#f1f5fb;--white:#ffffff;--surf:#f8fafc;
+  --rsm:8px;--rmd:10px;--rlg:14px;
+  --sh:0 1px 3px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.04);
+  --shm:0 4px 16px rgba(0,0,0,.10);
 }
+html,body{height:100%;font-family:'Inter',sans-serif;background:var(--bg);color:var(--tp);font-size:14px;line-height:1.5;}
+.layout{display:flex;height:100vh;overflow:hidden;}
 
-html, body { height: 100%; font-family: 'Inter', sans-serif; background: var(--bg-page); color: var(--text-primary); font-size: 14px; line-height: 1.5; }
-.layout { display: flex; height: 100vh; overflow: hidden; }
+/* ── SIDEBAR ── */
+.sidebar{width:240px;min-width:240px;background:var(--sidebar);display:flex;flex-direction:column;overflow-y:auto;overflow-x:hidden;}
+.sidebar-header{padding:16px 16px 14px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,.07);}
+.s-logo{width:36px;height:36px;border-radius:8px;background:var(--blue);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;flex-shrink:0;}
+.s-co{font-size:12.5px;font-weight:600;color:#fff;line-height:1.3;}
+.s-co span{display:block;font-size:11px;font-weight:400;color:rgba(255,255,255,.4);}
+.nav{flex:1;padding:6px 0;}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 16px;font-size:13px;color:rgba(255,255,255,.6);cursor:pointer;transition:background .13s,color .13s;}
+.nav-item .ti{font-size:17px;flex-shrink:0;}
+.nav-item:hover{background:rgba(255,255,255,.07);color:#fff;}
+.nav-item.active{background:var(--sidebar-active);color:#fff;font-weight:500;}
+.nav-section{padding:14px 16px 4px;font-size:10.5px;font-weight:600;color:rgba(255,255,255,.28);text-transform:uppercase;letter-spacing:.08em;}
+.nav-sub{display:flex;align-items:center;padding:7px 16px 7px 42px;font-size:12.5px;color:rgba(255,255,255,.48);cursor:pointer;transition:color .13s;}
+.nav-sub:hover{color:rgba(255,255,255,.85);}
+.s-footer{padding:16px;border-top:1px solid rgba(255,255,255,.07);display:flex;flex-direction:column;align-items:center;gap:3px;}
+.s-pg-wrap{display:flex;align-items:center;gap:7px;}
+.s-pg-mark{width:26px;height:26px;border-radius:6px;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:rgba(255,255,255,.65);}
+.s-pg-name{font-size:13px;font-weight:700;color:rgba(255,255,255,.8);}
+.s-pg-sub{font-size:10.5px;color:rgba(255,255,255,.32);}
 
-/* ━━ SIDEBAR — exactly matches screenshot ━━ */
-.sidebar {
-  width: 240px; min-width: 240px;
-  background: var(--sidebar-bg);
-  display: flex; flex-direction: column;
-  overflow-y: auto; overflow-x: hidden;
-}
-.sidebar-header {
-  padding: 16px 16px 14px;
-  display: flex; align-items: center; gap: 10px;
-}
-.sidebar-logo-mark {
-  width: 36px; height: 36px; border-radius: 8px;
-  background: var(--blue);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 13px; font-weight: 700; color: #fff; flex-shrink: 0;
-}
-.sidebar-company { font-size: 12.5px; font-weight: 600; color: #fff; line-height: 1.3; }
-.sidebar-company span { display: block; font-size: 11px; font-weight: 400; color: rgba(255,255,255,0.45); }
+/* ── MAIN ── */
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden;}
+.topbar{height:52px;background:var(--white);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 24px;flex-shrink:0;}
+.sandbox-badge{font-size:11px;font-weight:500;background:#fffbeb;color:#92400e;border:1px solid #fde68a;padding:3px 10px;border-radius:20px;}
+.tb-right{display:flex;align-items:center;gap:14px;font-size:12.5px;color:var(--ts);}
+.tb-right strong{color:var(--tp);font-weight:500;}
+.tb-sep{color:var(--border);}
+.avatar{width:32px;height:32px;border-radius:50%;background:var(--blue);color:#fff;font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center;cursor:pointer;}
 
-.nav { flex: 1; padding: 4px 0; }
-.nav-item {
-  display: flex; align-items: center; gap: 10px;
-  padding: 9px 16px; font-size: 13px;
-  color: rgba(255,255,255,0.65); cursor: pointer;
-  transition: background 0.13s, color 0.13s;
-  position: relative;
-}
-.nav-item .ti { font-size: 17px; flex-shrink: 0; }
-.nav-item:hover { background: rgba(255,255,255,0.07); color: #fff; }
-.nav-item.active {
-  background: var(--sidebar-active-bg);
-  color: #fff; font-weight: 500;
-  border-radius: 0;
-}
-.nav-sub-group { padding: 0; }
-.nav-sub-label {
-  padding: 14px 16px 4px;
-  font-size: 10.5px; font-weight: 600;
-  color: rgba(255,255,255,0.3);
-  text-transform: uppercase; letter-spacing: 0.08em;
-}
-.nav-sub-item {
-  display: flex; align-items: center;
-  padding: 7px 16px 7px 42px;
-  font-size: 12.5px; color: rgba(255,255,255,0.5);
-  cursor: pointer; transition: color 0.13s;
-}
-.nav-sub-item:hover { color: rgba(255,255,255,0.85); }
+/* ── PAGE PANELS ── */
+.page{display:none;flex:1;overflow-y:auto;padding:24px 24px 40px;}
+.page.active{display:block;}
 
-.sidebar-footer {
-  padding: 0 0 16px;
-  display: flex; flex-direction: column; align-items: center; gap: 4px;
-  border-top: 1px solid rgba(255,255,255,0.07);
-  padding-top: 16px;
-}
-.sidebar-pg-logo {
-  display: flex; align-items: center; gap: 8px;
-}
-.sidebar-pg-logo-mark {
-  width: 28px; height: 28px; border-radius: 6px;
-  background: rgba(255,255,255,0.1);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.7);
-}
-.sidebar-pg-logo-text { font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.8); }
-.sidebar-pg-sub { font-size: 10.5px; color: rgba(255,255,255,0.35); letter-spacing: 0.03em; }
+/* ── PAGE HEADER ── */
+.ph-row{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:20px;}
+.ph h1{font-size:19px;font-weight:600;color:var(--tp);}
+.ph p{font-size:13px;color:var(--ts);margin-top:3px;}
+.ph-actions{display:flex;gap:10px;}
 
-/* ━━ MAIN ━━ */
-.main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+/* ── OVERVIEW SECTION ── */
+.section-label{font-size:11px;font-weight:600;color:var(--tm);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px;}
+.cards4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px;}
+.cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:24px;}
+.ov-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px 20px 16px;box-shadow:var(--sh);}
+.ovc-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.ovc-label{font-size:13px;color:var(--ts);}
+.ovc-info{width:15px;height:15px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--tm);cursor:help;flex-shrink:0;}
+.ovc-val{font-size:24px;font-weight:700;color:var(--tp);letter-spacing:-.5px;line-height:1;margin-bottom:6px;}
+.ovc-sub{font-size:12px;color:var(--tm);}
 
-.topbar {
-  height: 52px; background: var(--bg-white);
-  border-bottom: 1px solid var(--border);
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 24px; flex-shrink: 0;
-}
-.sandbox-badge {
-  font-size: 11px; font-weight: 500;
-  background: #fffbeb; color: #92400e;
-  border: 1px solid #fde68a; padding: 3px 10px; border-radius: 20px;
-}
-.topbar-right { display: flex; align-items: center; gap: 14px; font-size: 12.5px; color: var(--text-secondary); }
-.topbar-right strong { color: var(--text-primary); font-weight: 500; }
-.topbar-sep { color: var(--border); }
-.avatar-circle {
-  width: 32px; height: 32px; border-radius: 50%;
-  background: var(--blue); color: #fff;
-  font-size: 12px; font-weight: 600;
-  display: flex; align-items: center; justify-content: center; cursor: pointer;
-}
+/* ── TOOLBAR ── */
+.toolbar{background:var(--white);border:1px solid var(--border);border-radius:var(--rmd) var(--rmd) 0 0;padding:12px 16px;display:flex;align-items:center;gap:10px;border-bottom:none;}
+.sb{position:relative;flex:1;min-width:180px;}
+.sb .ti{position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:15px;color:var(--tm);pointer-events:none;}
+.sb input{width:100%;height:36px;border:1px solid var(--border);border-radius:var(--rsm);padding:0 12px 0 34px;font-size:13px;color:var(--tp);background:var(--surf);outline:none;font-family:'Inter',sans-serif;transition:border-color .15s,box-shadow .15s;}
+.sb input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,97,227,.1);background:#fff;}
+.sb input::placeholder{color:var(--tm);}
+.tsel{height:36px;border:1px solid var(--border);border-radius:var(--rsm);padding:0 28px 0 10px;font-size:13px;color:var(--tp);background:var(--surf);outline:none;cursor:pointer;font-family:'Inter',sans-serif;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 8px center;}
+.tsel:focus{border-color:var(--blue);outline:none;}
+.tsep{flex:1;}
+.cbadge{font-size:11px;font-weight:600;padding:2px 8px;background:var(--blue-light);color:var(--blue);border-radius:20px;border:1px solid var(--blue-mid);}
+.btn{height:36px;padding:0 14px;border-radius:var(--rsm);font-size:13px;font-weight:500;cursor:pointer;display:inline-flex;align-items:center;gap:6px;font-family:'Inter',sans-serif;transition:all .15s;border:none;}
+.btn-p{background:var(--blue);color:#fff;}
+.btn-p:hover{background:var(--blue-h);}
+.btn-g{background:var(--white);color:var(--tp);border:1px solid var(--border);}
+.btn-g:hover{background:var(--surf);}
+.btn-danger{background:#fff1f2;color:#be123c;border:1px solid #fecdd3;}
+.btn-danger:hover{background:#ffe4e6;}
 
-.content { flex: 1; overflow-y: auto; padding: 24px 24px 40px; }
+/* ── TABLES ── */
+.tw{background:var(--white);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--rmd) var(--rmd);overflow:hidden;}
+.ptbl{width:100%;border-collapse:collapse;}
+.ptbl thead tr{background:#f8fafd;border-bottom:1px solid var(--border);}
+.ptbl thead th{padding:10px 16px;text-align:left;font-size:11px;font-weight:600;color:var(--ts);text-transform:uppercase;letter-spacing:.07em;white-space:nowrap;}
+.ptbl tbody tr.mr{border-bottom:1px solid #f0f4fa;cursor:pointer;transition:background .12s;}
+.ptbl tbody tr.mr:hover{background:#f7faff;}
+.ptbl tbody tr.mr.open{background:#f0f6ff;border-bottom-color:#dbeafe;}
+.ptbl td{padding:14px 16px;vertical-align:middle;}
+.mn-cell{display:flex;align-items:center;gap:10px;}
+.mav{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;}
+.av-b{background:#dbeafe;color:#1d4ed8;}.av-t{background:#ccfbf1;color:#0f766e;}.av-p{background:#ede9fe;color:#6d28d9;}.av-a{background:#fef3c7;color:#b45309;}.av-g{background:#dcfce7;color:#166534;}
+.mn{font-size:13px;font-weight:600;color:var(--tp);}
+.mid{font-size:11px;color:var(--tm);}
+.chip{display:inline-flex;align-items:center;font-size:12px;font-weight:500;padding:3px 8px;border-radius:20px;white-space:nowrap;}
+.chip-b{background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe;}
+.chip-g{background:#f0fdf4;color:#166534;border:1px solid #bbf7d0;}
+.chip-gr{background:#f8fafc;color:var(--ts);border:1px solid #e2e8f0;}
+.chip-amber{background:#fffbeb;color:#b45309;border:1px solid #fde68a;}
+.chip-red{background:#fff1f2;color:#be123c;border:1px solid #fecdd3;}
+.stat{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:500;padding:3px 9px;border-radius:20px;}
+.sdot{width:5px;height:5px;border-radius:50%;}
+.s-act{background:#f0fdf4;color:#166534;}.s-act .sdot{background:#22c55e;}
+.s-pen{background:#fffbeb;color:#92400e;}.s-pen .sdot{background:#f59e0b;}
+.s-ina{background:#f8fafc;color:var(--ts);}.s-ina .sdot{background:#94a3b8;}
+.s-paid{background:#f0fdf4;color:#166534;}.s-paid .sdot{background:#22c55e;}
+.s-draft{background:#f0f9ff;color:#0369a1;}.s-draft .sdot{background:#0ea5e9;}
+.s-over{background:#fff1f2;color:#be123c;}.s-over .sdot{background:#ef4444;}
+.xbtn{width:28px;height:28px;border-radius:7px;border:1px solid var(--border);background:var(--surf);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--tm);font-size:14px;transition:all .2s;}
+.xbtn:hover{background:var(--blue-light);border-color:#bfdbfe;color:var(--blue);}
+.xbtn.open{background:var(--blue);border-color:var(--blue);color:#fff;transform:rotate(180deg);}
+.dr{display:none;}
+.dr.visible{display:table-row;}
+.dr td{padding:0 !important;background:#f5f9ff !important;border-bottom:1px solid #dbeafe;}
+.empty-row td{text-align:center;padding:48px 16px;}
+.empty-in{display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--tm);}
+.empty-in .ti{font-size:30px;opacity:.4;}
 
-.page-title-row { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 20px; }
-.page-title h1 { font-size: 19px; font-weight: 600; color: var(--text-primary); }
-.page-title p { font-size: 13px; color: var(--text-secondary); margin-top: 3px; }
+/* ── DETAIL TABS ── */
+.det-body{padding:0 20px 20px;}
+.det-tabs{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:18px;}
+.dtab{padding:11px 16px;font-size:13px;font-weight:500;color:var(--ts);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:color .15s;}
+.dtab:hover{color:var(--tp);}
+.dtab.active{color:var(--blue);border-bottom-color:var(--blue);}
+.tp{display:none;}
+.tp.active{display:block;}
 
-/* ━━ SUMMARY CARDS — matches screenshot style ━━ */
-.overview-label {
-  font-size: 11px; font-weight: 600; color: var(--text-muted);
-  text-transform: uppercase; letter-spacing: 0.08em;
-  margin-bottom: 12px;
-}
-.summary-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 24px; }
-.summary-card {
-  background: var(--bg-white);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 18px 20px 16px;
-  box-shadow: var(--shadow-sm);
-}
-.sc-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
-.sc-label-row { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--text-secondary); font-weight: 400; }
-.sc-label-row .ti { font-size: 14px; color: var(--text-muted); }
-.sc-info { width: 15px; height: 15px; border-radius: 50%; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 9px; color: var(--text-muted); cursor: help; flex-shrink: 0; }
-.sc-value { font-size: 24px; font-weight: 700; color: var(--text-primary); letter-spacing: -0.5px; line-height: 1; margin-bottom: 6px; }
-.sc-sub { font-size: 12px; color: var(--text-muted); }
+/* fee boxes */
+.fgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+.fbox{background:var(--white);border:1px solid var(--border);border-radius:var(--rmd);padding:14px 15px;}
+.fbox.pri{border-left:3px solid var(--blue);}
+.ficon{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:13px;margin-bottom:9px;}
+.fi-b{background:#eff6ff;color:var(--blue);}.fi-t{background:#f0fdfa;color:#0f766e;}.fi-p{background:#f5f3ff;color:#6d28d9;}
+.fi-a{background:#fffbeb;color:#b45309;}.fi-r{background:#fff1f2;color:#be123c;}.fi-g{background:#f0fdf4;color:#166534;}
+.fl{font-size:10.5px;font-weight:600;color:var(--tm);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px;}
+.fv{font-size:19px;font-weight:700;color:var(--tp);letter-spacing:-.3px;line-height:1.1;}
+.fs{font-size:11px;color:var(--ts);margin-top:3px;}
 
-/* ━━ TOOLBAR ━━ */
-.toolbar {
-  background: var(--bg-white); border: 1px solid var(--border);
-  border-radius: var(--radius-md) var(--radius-md) 0 0;
-  padding: 12px 16px;
-  display: flex; align-items: center; gap: 10px;
-  border-bottom: none;
-}
-.search-box { position: relative; flex: 1; min-width: 180px; }
-.search-box .ti { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 15px; color: var(--text-muted); pointer-events: none; }
-.search-box input {
-  width: 100%; height: 36px;
-  border: 1px solid var(--border); border-radius: var(--radius-sm);
-  padding: 0 12px 0 34px; font-size: 13px;
-  color: var(--text-primary); background: var(--bg-surface);
-  outline: none; font-family: 'Inter', sans-serif; transition: border-color 0.15s, box-shadow 0.15s;
-}
-.search-box input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(0,97,227,0.1); background: #fff; }
-.search-box input::placeholder { color: var(--text-muted); }
-.toolbar-select {
-  height: 36px; border: 1px solid var(--border); border-radius: var(--radius-sm);
-  padding: 0 28px 0 10px; font-size: 13px; color: var(--text-primary);
-  background: var(--bg-surface); outline: none; cursor: pointer;
-  font-family: 'Inter', sans-serif; appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
-  background-repeat: no-repeat; background-position: right 8px center;
-}
-.toolbar-select:focus { border-color: var(--blue); outline: none; }
-.toolbar-spacer { flex: 1; }
-.count-badge { font-size: 11px; font-weight: 600; padding: 2px 8px; background: var(--blue-light); color: var(--blue); border-radius: 20px; border: 1px solid var(--blue-mid); }
-.btn { height: 36px; padding: 0 14px; border-radius: var(--radius-sm); font-size: 13px; font-weight: 500; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; font-family: 'Inter', sans-serif; transition: all 0.15s; border: none; }
-.btn-primary { background: var(--blue); color: #fff; }
-.btn-primary:hover { background: var(--blue-hover); }
-.btn-ghost { background: var(--bg-white); color: var(--text-primary); border: 1px solid var(--border); }
-.btn-ghost:hover { background: var(--bg-surface); }
+/* setup tab */
+.sg{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px;}
+.sc{background:var(--white);border:1px solid var(--border);border-radius:var(--rmd);padding:18px 20px;}
+.sc-ic{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:17px;margin-bottom:12px;}
+.sc-l{font-size:11px;font-weight:600;color:var(--tm);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;}
+.sc-v{font-size:26px;font-weight:700;color:var(--tp);letter-spacing:-.5px;line-height:1;}
+.sc-s{font-size:12px;color:var(--ts);margin-top:5px;}
+.sdt{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--border);border-radius:var(--rmd);overflow:hidden;}
+.sdt th{background:#f8fafd;padding:9px 14px;font-size:11px;font-weight:600;color:var(--ts);text-transform:uppercase;letter-spacing:.06em;text-align:left;border-bottom:1px solid var(--border);}
+.sdt td{padding:11px 14px;font-size:13px;color:var(--tp);border-bottom:1px solid #f0f4fa;}
+.sdt tr:last-child td{border-bottom:none;}
+.sdt .muted{color:var(--ts);font-size:12px;}.sdt .bold{font-weight:600;}.sdt .blue{color:var(--blue);font-weight:600;}
 
-/* ━━ TABLE ━━ */
-.table-wrap { background: var(--bg-white); border: 1px solid var(--border); border-top: none; border-radius: 0 0 var(--radius-md) var(--radius-md); overflow: hidden; }
-.pricing-table { width: 100%; border-collapse: collapse; }
-.pricing-table thead tr { background: #f8fafd; border-bottom: 1px solid var(--border); }
-.pricing-table thead th { padding: 10px 16px; text-align: left; font-size: 11px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.07em; white-space: nowrap; }
-.pricing-table tbody tr.m-row { border-bottom: 1px solid #f0f4fa; cursor: pointer; transition: background 0.12s; }
-.pricing-table tbody tr.m-row:hover { background: #f7faff; }
-.pricing-table tbody tr.m-row.is-open { background: #f0f6ff; border-bottom-color: #dbeafe; }
-.pricing-table td { padding: 14px 16px; vertical-align: middle; }
-.m-name-cell { display: flex; align-items: center; gap: 10px; }
-.m-avatar { width: 34px; height: 34px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; }
-.av-b { background: #dbeafe; color: #1d4ed8; } .av-t { background: #ccfbf1; color: #0f766e; }
-.av-p { background: #ede9fe; color: #6d28d9; } .av-a { background: #fef3c7; color: #b45309; } .av-g { background: #dcfce7; color: #166534; }
-.m-name { font-size: 13px; font-weight: 600; color: var(--text-primary); }
-.m-id { font-size: 11px; color: var(--text-muted); }
-.chip { display: inline-flex; align-items: center; font-size: 12px; font-weight: 500; padding: 3px 8px; border-radius: 20px; white-space: nowrap; }
-.chip-blue { background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
-.chip-green { background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; }
-.chip-gray { background: #f8fafc; color: var(--text-secondary); border: 1px solid #e2e8f0; }
-.status { display: inline-flex; align-items: center; gap: 5px; font-size: 11.5px; font-weight: 500; padding: 3px 9px; border-radius: 20px; }
-.status-dot { width: 5px; height: 5px; border-radius: 50%; }
-.s-active { background: #f0fdf4; color: #166534; } .s-active .status-dot { background: #22c55e; }
-.s-pending { background: #fffbeb; color: #92400e; } .s-pending .status-dot { background: #f59e0b; }
-.s-inactive { background: #f8fafc; color: var(--text-secondary); } .s-inactive .status-dot { background: #94a3b8; }
-.expand-btn { width: 28px; height: 28px; border-radius: 7px; border: 1px solid var(--border); background: var(--bg-surface); cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 14px; transition: all 0.2s; }
-.expand-btn:hover { background: var(--blue-light); border-color: #bfdbfe; color: var(--blue); }
-.expand-btn.open { background: var(--blue); border-color: var(--blue); color: #fff; transform: rotate(180deg); }
+/* notes */
+.nc{background:var(--white);border:1px solid var(--border);border-radius:var(--rmd);overflow:hidden;}
+.ntb{padding:10px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:#fafbfc;}
+.ntb-l{display:flex;align-items:center;gap:6px;}
+.ntag{font-size:11px;font-weight:500;padding:2px 8px;border-radius:20px;background:#fffbeb;color:#b45309;border:1px solid #fde68a;}
+.nbody{padding:16px;min-height:90px;font-size:13.5px;color:var(--tp);line-height:1.75;}
+.nbody.empty{color:var(--tm);font-style:italic;}
+.nea{width:100%;border:none;outline:none;resize:none;font-family:'Inter',sans-serif;font-size:13.5px;color:var(--tp);line-height:1.75;min-height:90px;background:transparent;padding:16px;display:none;}
+.nea.active{display:block;}
+.nft{padding:10px 14px;border-top:1px solid var(--border);display:none;justify-content:flex-end;gap:8px;}
+.nft.active{display:flex;}
 
-/* ━━ EXPANDED DETAIL ━━ */
-.detail-row { display: none; }
-.detail-row.visible { display: table-row; }
-.detail-row td { padding: 0 !important; background: #f5f9ff !important; border-bottom: 1px solid #dbeafe; }
-.detail-body { padding: 0 20px 20px; }
-.detail-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--border); margin-bottom: 20px; }
-.dtab { padding: 12px 16px; font-size: 13px; font-weight: 500; color: var(--text-secondary); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: color 0.15s; }
-.dtab:hover { color: var(--text-primary); }
-.dtab.active { color: var(--blue); border-bottom-color: var(--blue); }
-.tab-panel { display: none; }
-.tab-panel.active { display: block; }
+/* export config */
+.exc-panel{background:var(--white);border:1px solid var(--border);border-radius:var(--rmd);overflow:hidden;}
+.exc-inner{padding:16px;}
+.exc-st{font-size:11px;font-weight:600;color:var(--tm);text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px;margin-top:16px;display:flex;align-items:center;gap:5px;}
+.exc-st:first-child{margin-top:0;}
+.exc-fgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:4px;}
+.efc{border:1px solid var(--border);border-radius:8px;padding:12px 14px;cursor:pointer;transition:all .15s;position:relative;}
+.efc:hover,.efc.sel{border-color:var(--blue);background:var(--blue-light);}
+.efc.sel::after{content:'✓';position:absolute;top:8px;right:10px;font-size:11px;color:var(--blue);font-weight:700;}
+.efc-ic{font-size:18px;margin-bottom:6px;}
+.efc-n{font-size:13px;font-weight:600;color:var(--tp);}
+.efc-d{font-size:11px;color:var(--ts);margin-top:2px;}
+.efl{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+.efr{display:flex;align-items:center;gap:7px;padding:7px 10px;border:1px solid var(--border);border-radius:7px;cursor:pointer;transition:background .12s;}
+.efr:hover{background:var(--surf);}
+.efr input{accent-color:var(--blue);cursor:pointer;}
+.efr label{font-size:12.5px;color:var(--tp);cursor:pointer;}
+.epv{background:#1e293b;border-radius:8px;padding:13px 15px;font-family:monospace;font-size:11px;color:#94a3b8;line-height:1.8;overflow-x:auto;}
+.epv .eph{color:#60a5fa;}.epv .epr{color:#e2e8f0;}
+.det-actions{display:flex;gap:8px;margin-top:18px;padding-top:14px;border-top:1px solid var(--border);flex-wrap:wrap;}
 
-.fee-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-.fee-box { background: var(--bg-white); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 14px 15px; }
-.fee-box.primary { border-left: 3px solid var(--blue); }
-.fb-icon { width: 28px; height: 28px; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 13px; margin-bottom: 9px; }
-.fbi-blue { background: #eff6ff; color: var(--blue); } .fbi-teal { background: #f0fdfa; color: #0f766e; }
-.fbi-purple { background: #f5f3ff; color: #6d28d9; } .fbi-amber { background: #fffbeb; color: #b45309; }
-.fbi-red { background: #fff1f2; color: #be123c; } .fbi-green { background: #f0fdf4; color: #166534; }
-.fb-label { font-size: 10.5px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 5px; }
-.fb-value { font-size: 19px; font-weight: 700; color: var(--text-primary); letter-spacing: -0.3px; line-height: 1.1; }
-.fb-sub { font-size: 11px; color: var(--text-secondary); margin-top: 3px; }
+/* ── OVERLAYS ── */
+.overlay{display:none;position:fixed;inset:0;background:rgba(15,23,42,.45);z-index:100;backdrop-filter:blur(2px);opacity:0;transition:opacity .25s;justify-content:flex-end;}
+.overlay.open{display:flex;opacity:1;}
+.drawer{width:520px;max-width:100%;background:var(--white);height:100%;display:flex;flex-direction:column;transform:translateX(100%);transition:transform .3s cubic-bezier(.16,1,.3,1);box-shadow:-8px 0 32px rgba(0,0,0,.12);}
+.overlay.open .drawer{transform:translateX(0);}
+.dh{padding:18px 22px 14px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;flex-shrink:0;}
+.dt{font-size:15px;font-weight:600;color:var(--tp);}
+.ds{font-size:12px;color:var(--ts);margin-top:3px;}
+.dc{width:30px;height:30px;border-radius:7px;border:1px solid var(--border);background:var(--surf);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;color:var(--ts);transition:all .15s;flex-shrink:0;margin-top:2px;}
+.dc:hover{background:#fff1f2;border-color:#fecdd3;color:#be123c;}
+.dsteps{display:flex;align-items:center;padding:14px 22px;border-bottom:1px solid var(--border);background:var(--surf);flex-shrink:0;}
+.si{display:flex;align-items:center;gap:7px;}
+.sn{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0;border:1.5px solid var(--border);background:var(--white);color:var(--tm);transition:all .2s;}
+.sn.done{background:#f0fdf4;border-color:#86efac;color:#166534;}
+.sn.active{background:var(--blue);border-color:var(--blue);color:#fff;}
+.sl{font-size:11.5px;color:var(--tm);font-weight:500;white-space:nowrap;}
+.sl.active{color:var(--tp);font-weight:600;}
+.sl.done{color:#166534;}
+.sc-conn{flex:1;height:1px;background:var(--border);margin:0 8px;min-width:16px;}
+.sc-conn.done{background:#86efac;}
+.db{flex:1;overflow-y:auto;padding:20px 22px;}
+.df{padding:14px 22px;border-top:1px solid var(--border);display:flex;align-items:center;gap:10px;flex-shrink:0;background:var(--white);}
+.sind{font-size:12px;color:var(--tm);font-weight:500;}
 
-/* Setup & Monthly tab */
-.setup-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 18px; }
-.setup-card { background: var(--bg-white); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 18px 20px; }
-.setup-card-icon { width: 36px; height: 36px; border-radius: 9px; display: flex; align-items: center; justify-content: center; font-size: 17px; margin-bottom: 12px; }
-.setup-card-label { font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 6px; }
-.setup-card-value { font-size: 26px; font-weight: 700; color: var(--text-primary); letter-spacing: -0.5px; line-height: 1; }
-.setup-card-sub { font-size: 12px; color: var(--text-secondary); margin-top: 5px; }
-.setup-detail-table { width: 100%; border-collapse: collapse; background: var(--bg-white); border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden; }
-.setup-detail-table th { background: #f8fafd; padding: 9px 14px; font-size: 11px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.06em; text-align: left; border-bottom: 1px solid var(--border); }
-.setup-detail-table td { padding: 11px 14px; font-size: 13px; color: var(--text-primary); border-bottom: 1px solid #f0f4fa; }
-.setup-detail-table tr:last-child td { border-bottom: none; }
-.setup-detail-table td.muted { color: var(--text-secondary); font-size: 12px; }
-.setup-detail-table td.bold { font-weight: 600; }
-.setup-detail-table td.blue { color: var(--blue); font-weight: 600; }
+/* form */
+.fsec{margin-bottom:20px;}
+.fst{font-size:11px;font-weight:600;color:var(--tm);text-transform:uppercase;letter-spacing:.07em;margin-bottom:11px;padding-bottom:8px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:6px;}
+.fr{display:grid;gap:12px;margin-bottom:12px;}
+.fr.c2{grid-template-columns:1fr 1fr;}
+.fr.c3{grid-template-columns:1fr 1fr 1fr;}
+.fg{display:flex;flex-direction:column;gap:5px;}
+.flbl{font-size:12px;font-weight:500;color:var(--tp);}
+.fhint{font-size:11px;color:var(--tm);}
+.fi,.fsel{height:36px;border:1px solid var(--border);border-radius:var(--rsm);padding:0 11px;font-size:13px;color:var(--tp);background:var(--white);outline:none;font-family:'Inter',sans-serif;transition:border-color .15s,box-shadow .15s;width:100%;}
+.fi:focus,.fsel:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,97,227,.1);}
+.fi::placeholder{color:var(--tm);}
+.fi.pfx{padding-left:30px;}.fi.sfx{padding-right:30px;}
+.iw{position:relative;}
+.ipfx,.isfx{position:absolute;top:50%;transform:translateY(-50%);font-size:12px;color:var(--tm);font-weight:500;pointer-events:none;}
+.ipfx{left:10px;}.isfx{right:10px;}
+.fsel{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 9px center;padding-right:28px;}
+.tr-row{display:flex;align-items:center;justify-content:space-between;background:var(--surf);border:1px solid var(--border);border-radius:var(--rsm);padding:11px 13px;margin-bottom:12px;}
+.tr-info .tr-t{font-size:13px;font-weight:500;color:var(--tp);}
+.tr-info .tr-d{font-size:11.5px;color:var(--ts);margin-top:2px;}
+.tog{position:relative;width:38px;height:21px;flex-shrink:0;margin-left:14px;}
+.tog input{opacity:0;width:0;height:0;}
+.tog-sl{position:absolute;inset:0;background:#e2e8f0;border-radius:21px;cursor:pointer;transition:background .2s;}
+.tog-sl::before{content:'';position:absolute;width:15px;height:15px;border-radius:50%;background:#fff;left:3px;top:3px;transition:transform .2s;box-shadow:0 1px 3px rgba(0,0,0,.2);}
+.tog input:checked+.tog-sl{background:var(--blue);}
+.tog input:checked+.tog-sl::before{transform:translateX(17px);}
+.fprev{background:var(--blue-light);border:1px solid var(--blue-mid);border-radius:var(--rmd);padding:14px;margin-bottom:16px;}
+.fprev-t{font-size:11px;font-weight:600;color:#1d4ed8;text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px;}
+.fprev-r{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid #dbeafe;}
+.fprev-r:last-child{border-bottom:none;}
+.fpr-l{font-size:12.5px;color:#3b5fa0;}
+.fpr-v{font-size:13px;font-weight:600;color:#1d4ed8;}
+.succ{display:none;flex-direction:column;align-items:center;justify-content:center;padding:48px 24px;text-align:center;flex:1;}
+.succ.vis{display:flex;}
+.succ-ic{width:60px;height:60px;border-radius:50%;background:#f0fdf4;border:2px solid #86efac;display:flex;align-items:center;justify-content:center;font-size:26px;color:#16a34a;margin-bottom:18px;}
+.succ-t{font-size:17px;font-weight:600;color:var(--tp);margin-bottom:7px;}
+.succ-s{font-size:13px;color:var(--ts);line-height:1.65;max-width:300px;}
+.succ-id{margin-top:18px;background:var(--surf);border:1px solid var(--border);border-radius:var(--rsm);padding:9px 16px;font-size:13px;color:var(--ts);font-family:monospace;}
+.succ-id span{color:var(--blue);font-weight:600;}
 
-/* Notes tab */
-.notes-container { background: var(--bg-white); border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden; }
-.notes-toolbar { padding: 10px 14px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; background: #fafbfc; }
-.notes-toolbar-left { display: flex; align-items: center; gap: 6px; }
-.notes-meta { font-size: 11.5px; color: var(--text-muted); }
-.notes-tag { font-size: 11px; font-weight: 500; padding: 2px 8px; border-radius: 20px; background: #fffbeb; color: #b45309; border: 1px solid #fde68a; }
-.notes-body { padding: 16px; min-height: 90px; font-size: 13.5px; color: var(--text-primary); line-height: 1.75; }
-.notes-body.empty { color: var(--text-muted); font-style: italic; }
-.notes-edit-area { width: 100%; border: none; outline: none; resize: none; font-family: 'Inter', sans-serif; font-size: 13.5px; color: var(--text-primary); line-height: 1.75; min-height: 90px; background: transparent; padding: 16px; display: none; }
-.notes-edit-area.active { display: block; }
-.notes-footer { padding: 10px 14px; border-top: 1px solid var(--border); display: none; justify-content: flex-end; gap: 8px; }
-.notes-footer.active { display: flex; }
+/* export drawer */
+.eod-body{flex:1;overflow-y:auto;padding:20px 22px;}
+.eoc{border:1px solid var(--border);border-radius:var(--rmd);padding:14px 16px;cursor:pointer;transition:all .15s;display:flex;align-items:center;gap:14px;margin-bottom:8px;}
+.eoc:hover,.eoc.sel{border-color:var(--blue);background:var(--blue-light);}
+.eoc-ic{width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.eoc-inf{flex:1;}
+.eoc-n{font-size:13.5px;font-weight:600;color:var(--tp);}
+.eoc-d{font-size:12px;color:var(--ts);margin-top:2px;}
+.eoc-ck{width:18px;height:18px;border-radius:50%;border:1.5px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:10px;}
+.eoc.sel .eoc-ck{background:var(--blue);border-color:var(--blue);color:#fff;}
+.esc{border:1px solid var(--border);border-radius:var(--rsm);padding:10px 14px;cursor:pointer;transition:all .15s;display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;}
+.esc:hover,.esc.sel{border-color:var(--blue);background:var(--blue-light);}
+.esc input[type=radio]{accent-color:var(--blue);}
+.eds{margin-bottom:20px;}
+.edl{font-size:11px;font-weight:600;color:var(--tm);text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px;}
+.efg2{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+.efi{display:flex;align-items:center;gap:7px;padding:8px 10px;border:1px solid var(--border);border-radius:7px;cursor:pointer;transition:background .12s;}
+.efi:hover{background:var(--surf);}
+.efi input{accent-color:var(--blue);cursor:pointer;}
+.efi label{font-size:12.5px;color:var(--tp);cursor:pointer;line-height:1;}
+.eprev{background:#1e293b;border-radius:8px;padding:13px 15px;font-family:monospace;font-size:11px;color:#94a3b8;line-height:1.8;overflow-x:auto;}
+.eprev .eph{color:#60a5fa;}.eprev .epr{color:#e2e8f0;}
 
-/* Export config panel */
-.export-config-panel { background: var(--bg-white); border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden; }
-.export-section-title { font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 10px; margin-top: 16px; }
-.export-section-title:first-child { margin-top: 0; }
-.export-format-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 6px; }
-.export-format-card { border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; cursor: pointer; transition: all 0.15s; position: relative; }
-.export-format-card:hover { border-color: var(--blue); background: var(--blue-light); }
-.export-format-card.selected { border-color: var(--blue); background: var(--blue-light); }
-.export-format-card.selected::after { content: '✓'; position: absolute; top: 8px; right: 10px; font-size: 11px; color: var(--blue); font-weight: 700; }
-.export-format-card input[type=radio] { display: none; }
-.export-format-icon { font-size: 18px; margin-bottom: 6px; }
-.export-format-name { font-size: 13px; font-weight: 600; color: var(--text-primary); }
-.export-format-desc { font-size: 11px; color: var(--text-secondary); margin-top: 2px; }
-.export-fields-list { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
-.export-field-row { display: flex; align-items: center; gap: 8px; padding: 7px 10px; border: 1px solid var(--border); border-radius: 7px; cursor: pointer; background: var(--bg-white); transition: background 0.12s; }
-.export-field-row:hover { background: var(--bg-surface); }
-.export-field-row input[type=checkbox] { width: 14px; height: 14px; accent-color: var(--blue); cursor: pointer; }
-.export-field-row label { font-size: 12.5px; color: var(--text-primary); cursor: pointer; }
-.export-preview-box { background: #1e293b; border-radius: 8px; padding: 14px 16px; margin-top: 8px; font-family: 'Courier New', monospace; font-size: 11.5px; color: #94a3b8; line-height: 1.7; overflow-x: auto; }
-.export-preview-box .csv-header { color: #60a5fa; }
-.export-preview-box .csv-row { color: #e2e8f0; }
+/* ── GST INVOICE PAGE ── */
+/* Invoice list table uses same .ptbl, .tw, .toolbar styles */
+/* Invoice detail view */
+.inv-detail-wrap{display:none;}
+.inv-detail-wrap.active{display:block;}
+.inv-list-wrap{}
+.inv-back{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--blue);cursor:pointer;margin-bottom:18px;font-weight:500;}
+.inv-back:hover{opacity:.75;}
 
-/* Detail actions */
-.detail-actions { display: flex; gap: 8px; margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--border); flex-wrap: wrap; }
+/* Invoice document preview */
+.inv-doc{background:var(--white);border:1px solid var(--border);border-radius:var(--rlg);box-shadow:var(--shm);max-width:780px;margin:0 auto;}
+.inv-doc-header{padding:28px 32px 24px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;}
+.inv-from{flex:1;}
+.inv-from .inv-brand{font-size:18px;font-weight:700;color:var(--tp);letter-spacing:-.3px;}
+.inv-from .inv-brand-sub{font-size:12px;color:var(--ts);margin-top:2px;}
+.inv-from address{font-size:12px;color:var(--ts);font-style:normal;margin-top:10px;line-height:1.7;}
+.inv-meta{text-align:right;}
+.inv-title-badge{font-size:11px;font-weight:700;letter-spacing:.12em;color:var(--blue);text-transform:uppercase;background:var(--blue-light);padding:4px 12px;border-radius:20px;display:inline-block;margin-bottom:10px;}
+.inv-meta table{font-size:12.5px;border-collapse:collapse;}
+.inv-meta table td{padding:3px 0 3px 16px;color:var(--ts);}
+.inv-meta table td:first-child{color:var(--tm);text-align:right;}
+.inv-meta table td strong{color:var(--tp);font-weight:600;}
+.inv-parties{display:grid;grid-template-columns:1fr 1fr;gap:0;border-bottom:1px solid var(--border);}
+.inv-party{padding:20px 32px;}
+.inv-party:first-child{border-right:1px solid var(--border);}
+.inv-party-label{font-size:10px;font-weight:700;color:var(--tm);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px;}
+.inv-party h3{font-size:14px;font-weight:600;color:var(--tp);margin-bottom:4px;}
+.inv-party address{font-size:12px;color:var(--ts);font-style:normal;line-height:1.7;}
+.inv-party .gstin{font-size:11.5px;color:var(--tp);font-weight:600;background:var(--surf);padding:3px 8px;border-radius:5px;border:1px solid var(--border);display:inline-block;margin-top:6px;}
+.inv-items{padding:0 32px;}
+.inv-tbl{width:100%;border-collapse:collapse;margin-top:0;}
+.inv-tbl thead th{padding:11px 12px;text-align:left;font-size:11px;font-weight:600;color:var(--ts);text-transform:uppercase;letter-spacing:.07em;border-bottom:1px solid var(--border);background:#f8fafd;}
+.inv-tbl thead th:last-child{text-align:right;}
+.inv-tbl tbody td{padding:12px 12px;font-size:13px;color:var(--tp);border-bottom:1px solid #f0f4fa;}
+.inv-tbl tbody tr:last-child td{border-bottom:none;}
+.inv-tbl tbody td:last-child{text-align:right;font-weight:500;}
+.inv-tbl .sub-row td{background:var(--surf);font-size:12px;color:var(--ts);}
+.inv-tbl .sub-row td:first-child{padding-left:28px;}
+.inv-totals{padding:20px 32px;border-top:1px solid var(--border);}
+.inv-tot-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+.inv-tot-left{padding-right:32px;border-right:1px solid var(--border);}
+.inv-tot-right{}
+.inv-tot-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;}
+.inv-tot-row .l{font-size:13px;color:var(--ts);}
+.inv-tot-row .v{font-size:13px;font-weight:500;color:var(--tp);}
+.inv-tot-row.grand{border-top:1.5px solid var(--border);margin-top:6px;padding-top:10px;}
+.inv-tot-row.grand .l{font-size:14px;font-weight:600;color:var(--tp);}
+.inv-tot-row.grand .v{font-size:16px;font-weight:700;color:var(--blue);}
+.inv-amount-words{font-size:11.5px;color:var(--ts);margin-top:10px;font-style:italic;}
+.inv-bank{padding:16px 32px;border-top:1px solid var(--border);background:var(--surf);}
+.inv-bank-label{font-size:10px;font-weight:700;color:var(--tm);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px;}
+.inv-bank-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+.inv-bank-item .k{font-size:11px;color:var(--tm);margin-bottom:2px;}
+.inv-bank-item .v{font-size:12.5px;font-weight:600;color:var(--tp);}
+.inv-footer{padding:14px 32px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.inv-footer-note{font-size:11.5px;color:var(--tm);}
+.inv-sig{text-align:right;}
+.inv-sig .sig-line{width:140px;height:1px;background:var(--border);margin:24px 0 6px auto;}
+.inv-sig .sig-label{font-size:11px;color:var(--tm);}
 
-.empty-row td { text-align: center; padding: 48px 16px; }
-.empty-inner { display: flex; flex-direction: column; align-items: center; gap: 8px; color: var(--text-muted); }
-.empty-inner .ti { font-size: 30px; opacity: 0.4; }
+/* Invoice generator */
+.igw{background:var(--white);border:1px solid var(--border);border-radius:var(--rlg);overflow:hidden;}
+.igw-header{padding:18px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:#f8fafd;}
+.igw-title{font-size:14px;font-weight:600;color:var(--tp);}
+.igw-sub{font-size:12px;color:var(--ts);margin-top:2px;}
+.igw-body{padding:24px;}
+.gen-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
 
-/* ━━ OVERLAY + DRAWERS ━━ */
-.overlay { display: none; position: fixed; inset: 0; background: rgba(15,23,42,0.45); z-index: 100; backdrop-filter: blur(2px); opacity: 0; transition: opacity 0.25s; justify-content: flex-end; }
-.overlay.open { display: flex; opacity: 1; }
-.drawer { width: 520px; max-width: 100%; background: var(--bg-white); height: 100%; display: flex; flex-direction: column; transform: translateX(100%); transition: transform 0.3s cubic-bezier(0.16,1,0.3,1); box-shadow: -8px 0 32px rgba(0,0,0,0.12); }
-.overlay.open .drawer { transform: translateX(0); }
-.drawer-header { padding: 18px 22px 14px; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; justify-content: space-between; flex-shrink: 0; }
-.drawer-title { font-size: 15px; font-weight: 600; color: var(--text-primary); }
-.drawer-sub { font-size: 12px; color: var(--text-secondary); margin-top: 3px; }
-.drawer-close { width: 30px; height: 30px; border-radius: 7px; border: 1px solid var(--border); background: var(--bg-surface); display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 15px; color: var(--text-secondary); transition: all 0.15s; flex-shrink: 0; margin-top: 2px; }
-.drawer-close:hover { background: #fff1f2; border-color: #fecdd3; color: #be123c; }
-.drawer-steps { display: flex; align-items: center; padding: 14px 22px; border-bottom: 1px solid var(--border); background: var(--bg-surface); flex-shrink: 0; }
-.step-item { display: flex; align-items: center; gap: 7px; }
-.step-num { width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; flex-shrink: 0; border: 1.5px solid var(--border); background: var(--bg-white); color: var(--text-muted); transition: all 0.2s; }
-.step-num.done { background: #f0fdf4; border-color: #86efac; color: #166534; }
-.step-num.active { background: var(--blue); border-color: var(--blue); color: #fff; }
-.step-label { font-size: 11.5px; color: var(--text-muted); font-weight: 500; white-space: nowrap; }
-.step-label.active { color: var(--text-primary); font-weight: 600; }
-.step-label.done { color: #166534; }
-.step-connector { flex: 1; height: 1px; background: var(--border); margin: 0 8px; min-width: 16px; }
-.step-connector.done { background: #86efac; }
-.drawer-body { flex: 1; overflow-y: auto; padding: 20px 22px; }
-.drawer-footer { padding: 14px 22px; border-top: 1px solid var(--border); display: flex; align-items: center; gap: 10px; flex-shrink: 0; background: var(--bg-white); }
-.step-indicator { font-size: 12px; color: var(--text-muted); font-weight: 500; }
-
-/* Form elements */
-.form-section { margin-bottom: 22px; }
-.form-section-title { font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 6px; }
-.form-row { display: grid; gap: 12px; margin-bottom: 12px; }
-.form-row.cols-2 { grid-template-columns: 1fr 1fr; }
-.form-group { display: flex; flex-direction: column; gap: 5px; }
-.form-label { font-size: 12px; font-weight: 500; color: var(--text-primary); }
-.form-hint { font-size: 11px; color: var(--text-muted); }
-.form-input, .form-select { height: 36px; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 0 11px; font-size: 13px; color: var(--text-primary); background: var(--bg-white); outline: none; font-family: 'Inter', sans-serif; transition: border-color 0.15s, box-shadow 0.15s; width: 100%; }
-.form-input:focus, .form-select:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(0,97,227,0.1); }
-.form-input::placeholder { color: var(--text-muted); }
-.form-input.pfx { padding-left: 30px; } .form-input.sfx { padding-right: 30px; }
-.input-wrap { position: relative; }
-.ipfx, .isfx { position: absolute; top: 50%; transform: translateY(-50%); font-size: 12px; color: var(--text-muted); font-weight: 500; pointer-events: none; }
-.ipfx { left: 10px; } .isfx { right: 10px; }
-.form-select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 9px center; padding-right: 28px; }
-.toggle-row { display: flex; align-items: center; justify-content: space-between; background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 11px 13px; margin-bottom: 12px; }
-.toggle-info { flex: 1; }
-.toggle-title { font-size: 13px; font-weight: 500; color: var(--text-primary); }
-.toggle-desc { font-size: 11.5px; color: var(--text-secondary); margin-top: 2px; }
-.toggle { position: relative; width: 38px; height: 21px; flex-shrink: 0; margin-left: 14px; }
-.toggle input { opacity: 0; width: 0; height: 0; }
-.toggle-slider { position: absolute; inset: 0; background: #e2e8f0; border-radius: 21px; cursor: pointer; transition: background 0.2s; }
-.toggle-slider::before { content: ''; position: absolute; width: 15px; height: 15px; border-radius: 50%; background: #fff; left: 3px; top: 3px; transition: transform 0.2s; box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
-.toggle input:checked + .toggle-slider { background: var(--blue); }
-.toggle input:checked + .toggle-slider::before { transform: translateX(17px); }
-
-/* Fee preview in review step */
-.fee-preview { background: var(--blue-light); border: 1px solid var(--blue-mid); border-radius: var(--radius-md); padding: 14px; margin-bottom: 16px; }
-.fee-preview-title { font-size: 11px; font-weight: 600; color: #1d4ed8; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 10px; }
-.fee-preview-row { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid #dbeafe; }
-.fee-preview-row:last-child { border-bottom: none; }
-.fpr-label { font-size: 12.5px; color: #3b5fa0; }
-.fpr-val { font-size: 13px; font-weight: 600; color: #1d4ed8; }
-
-/* Success */
-.drawer-success { display: none; flex-direction: column; align-items: center; justify-content: center; padding: 48px 24px; text-align: center; flex: 1; }
-.drawer-success.visible { display: flex; }
-.success-icon { width: 60px; height: 60px; border-radius: 50%; background: #f0fdf4; border: 2px solid #86efac; display: flex; align-items: center; justify-content: center; font-size: 26px; color: #16a34a; margin-bottom: 18px; }
-.success-title { font-size: 17px; font-weight: 600; color: var(--text-primary); margin-bottom: 7px; }
-.success-sub { font-size: 13px; color: var(--text-secondary); line-height: 1.65; max-width: 300px; }
-.success-id { margin-top: 18px; background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 9px 16px; font-size: 13px; color: var(--text-secondary); font-family: monospace; }
-.success-id span { color: var(--blue); font-weight: 600; }
-
-/* Export drawer specific */
-.export-drawer-body { flex: 1; overflow-y: auto; padding: 20px 22px; }
-.export-option-card { border: 1px solid var(--border); border-radius: var(--radius-md); padding: 14px 16px; cursor: pointer; transition: all 0.15s; display: flex; align-items: center; gap: 14px; margin-bottom: 8px; }
-.export-option-card:hover { border-color: var(--blue); background: var(--blue-light); }
-.export-option-card.selected { border-color: var(--blue); background: var(--blue-light); }
-.export-option-card .eoc-icon { width: 38px; height: 38px; border-radius: 9px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
-.export-option-card .eoc-info { flex: 1; }
-.export-option-card .eoc-name { font-size: 13.5px; font-weight: 600; color: var(--text-primary); }
-.export-option-card .eoc-desc { font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
-.export-option-card .eoc-check { width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid var(--border); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 10px; }
-.export-option-card.selected .eoc-check { background: var(--blue); border-color: var(--blue); color: #fff; }
-.export-scope-card { border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 10px 14px; cursor: pointer; transition: all 0.15s; display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
-.export-scope-card:hover { border-color: var(--blue); background: var(--blue-light); }
-.export-scope-card.selected { border-color: var(--blue); background: var(--blue-light); }
-.export-scope-card input[type=radio] { accent-color: var(--blue); }
-.edrawer-section { margin-bottom: 20px; }
-.edrawer-label { font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 10px; }
-.export-field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
-.export-field-item { display: flex; align-items: center; gap: 7px; padding: 8px 10px; border: 1px solid var(--border); border-radius: 7px; cursor: pointer; transition: background 0.12s; }
-.export-field-item:hover { background: var(--bg-surface); }
-.export-field-item input { accent-color: var(--blue); cursor: pointer; }
-.export-field-item label { font-size: 12.5px; color: var(--text-primary); cursor: pointer; line-height: 1; }
-.export-preview { background: #1e293b; border-radius: 8px; padding: 13px 15px; font-family: monospace; font-size: 11px; color: #94a3b8; line-height: 1.8; overflow-x: auto; }
-.export-preview .ep-h { color: #60a5fa; } .export-preview .ep-r { color: #e2e8f0; }
+/* Invoice action bar */
+.inv-action-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;}
+.inv-status-group{display:flex;align-items:center;gap:10px;}
 </style>
 </head>
 <body>
 <div class="layout">
 
-<!-- ━━ SIDEBAR ━━ -->
+<!-- ── SIDEBAR ── -->
 <aside class="sidebar">
   <div class="sidebar-header">
-    <div class="sidebar-logo-mark">PG</div>
-    <div>
-      <div class="sidebar-company">PayGlocal Technologies<span>Pvt Ltd</span></div>
-    </div>
+    <div class="s-logo">PG</div>
+    <div class="s-co">PayGlocal Technologies<span>Pvt Ltd</span></div>
   </div>
   <nav class="nav">
-    <div class="nav-item"><i class="ti ti-home"></i> Home</div>
-    <div class="nav-item"><i class="ti ti-user-check"></i> Merchant Activation</div>
-    <div class="nav-item"><i class="ti ti-chart-bar"></i> Transaction Overview</div>
-    <div class="nav-item"><i class="ti ti-cash"></i> Commissions</div>
-    <div class="nav-item active"><i class="ti ti-tag"></i> Pricing</div>
-    <div class="nav-sub-group">
-      <div class="nav-sub-label">Account Management</div>
-      <div class="nav-sub-item">Team Management</div>
-      <div class="nav-sub-item">Key Management System</div>
-      <div class="nav-sub-item">Webhooks</div>
-    </div>
+    <div class="nav-item" onclick="goPage('home')"><i class="ti ti-home"></i> Home</div>
+    <div class="nav-item" onclick="goPage('home')"><i class="ti ti-user-check"></i> Merchant Activation</div>
+    <div class="nav-item" onclick="goPage('home')"><i class="ti ti-chart-bar"></i> Transaction Overview</div>
+    <div class="nav-item" onclick="goPage('home')"><i class="ti ti-cash"></i> Commissions</div>
+    <div class="nav-item" id="nav-pricing" onclick="goPage('pricing')"><i class="ti ti-tag"></i> Pricing</div>
+    <div class="nav-item" id="nav-gst" onclick="goPage('gst')"><i class="ti ti-file-invoice"></i> GST Invoice</div>
+    <div class="nav-section">Account Management</div>
+    <div class="nav-sub">Team Management</div>
+    <div class="nav-sub">Key Management System</div>
+    <div class="nav-sub">Webhooks</div>
   </nav>
-  <div class="sidebar-footer">
-    <div class="sidebar-pg-logo">
-      <div class="sidebar-pg-logo-mark">G</div>
-      <div class="sidebar-pg-logo-text">PayGlocal</div>
-    </div>
-    <div class="sidebar-pg-sub">Partner Program</div>
+  <div class="s-footer">
+    <div class="s-pg-wrap"><div class="s-pg-mark">G</div><div class="s-pg-name">PayGlocal</div></div>
+    <div class="s-pg-sub">Partner Program</div>
   </div>
 </aside>
 
-<!-- ━━ MAIN ━━ -->
+<!-- ── MAIN ── -->
 <div class="main">
   <div class="topbar">
     <div><span class="sandbox-badge">Sandbox</span></div>
-    <div class="topbar-right">
-      <strong>Yogesh Lokhande</strong>
-      <span class="topbar-sep">|</span>
+    <div class="tb-right">
+      <strong>Yogesh Lokhande</strong><span class="tb-sep">|</span>
       <span>Partner ID PTR-2021-YL-004</span>
-      <div class="avatar-circle">YL</div>
+      <div class="avatar">YL</div>
     </div>
   </div>
 
-  <div class="content">
-    <div class="page-title-row">
-      <div class="page-title">
-        <h1>Merchant Pricing</h1>
-        <p>Fee configurations across all your onboarded merchants</p>
-      </div>
-      <button class="btn btn-primary" onclick="openAddDrawer()"><i class="ti ti-plus" style="font-size:13px;"></i> Add merchant pricing</button>
-    </div>
-
-    <!-- BUSINESS OVERVIEW label -->
-    <div class="overview-label">Business Overview</div>
-
-    <!-- Summary cards — matching screenshot layout -->
-    <div class="summary-grid">
-      <div class="summary-card">
-        <div class="sc-header">
-          <div class="sc-label-row">Active Merchants</div>
-          <div class="sc-info" title="Total merchants with active status">?</div>
-        </div>
-        <div class="sc-value">5</div>
-        <div class="sc-sub">--</div>
-      </div>
-      <div class="summary-card">
-        <div class="sc-header">
-          <div class="sc-label-row">Transaction Volume</div>
-          <div class="sc-info" title="Total transaction volume">?</div>
-        </div>
-        <div class="sc-value">₹0.00</div>
-        <div class="sc-sub">--</div>
-      </div>
-      <div class="summary-card">
-        <div class="sc-header">
-          <div class="sc-label-row">Avg Gateway Fee</div>
-          <div class="sc-info" title="Average gateway fee across merchants">?</div>
-        </div>
-        <div class="sc-value">1.85%</div>
-        <div class="sc-sub">+ ₹2.50 flat per txn</div>
-      </div>
-      <div class="summary-card">
-        <div class="sc-header">
-          <div class="sc-label-row">Intl Card Support</div>
-          <div class="sc-info" title="Merchants with international cards enabled">?</div>
-        </div>
-        <div class="sc-value">4 / 5</div>
-        <div class="sc-sub">merchants enabled</div>
+  <!-- ════ PRICING PAGE ════ -->
+  <div class="page active" id="page-pricing">
+    <div class="ph-row">
+      <div class="ph"><h1>Merchant Pricing</h1><p>Fee configurations across all your onboarded merchants</p></div>
+      <div class="ph-actions">
+        <button class="btn btn-p" onclick="openAddDrawer()"><i class="ti ti-plus" style="font-size:13px;"></i> Add merchant pricing</button>
       </div>
     </div>
-
-    <!-- Toolbar -->
+    <div class="section-label">Business Overview</div>
+    <div class="cards4">
+      <div class="ov-card"><div class="ovc-head"><span class="ovc-label">Active Merchants</span><span class="ovc-info" title="Merchants with active status">?</span></div><div class="ovc-val">5</div><div class="ovc-sub">--</div></div>
+      <div class="ov-card"><div class="ovc-head"><span class="ovc-label">Transaction Volume</span><span class="ovc-info">?</span></div><div class="ovc-val">₹0.00</div><div class="ovc-sub">--</div></div>
+      <div class="ov-card"><div class="ovc-head"><span class="ovc-label">Avg Gateway Fee</span><span class="ovc-info">?</span></div><div class="ovc-val">1.85%</div><div class="ovc-sub">+ ₹2.50 flat per txn</div></div>
+      <div class="ov-card"><div class="ovc-head"><span class="ovc-label">Intl Card Support</span><span class="ovc-info">?</span></div><div class="ovc-val">4 / 5</div><div class="ovc-sub">merchants enabled</div></div>
+    </div>
     <div class="toolbar">
-      <div class="search-box">
-        <i class="ti ti-search"></i>
-        <input type="text" id="searchInput" placeholder="Search merchant name or ID…" oninput="applyFilters()">
-      </div>
-      <select class="toolbar-select" id="statusFilter" onchange="applyFilters()">
-        <option value="">All statuses</option>
-        <option value="active">Active</option>
-        <option value="pending">Pending</option>
-        <option value="inactive">Inactive</option>
-      </select>
-      <select class="toolbar-select" id="intlFilter" onchange="applyFilters()">
-        <option value="">All merchants</option>
-        <option value="yes">Intl enabled</option>
-        <option value="no">Intl disabled</option>
-      </select>
-      <div class="toolbar-spacer"></div>
-      <span id="merchantCount" class="count-badge">5 merchants</span>
-      <button class="btn btn-ghost" onclick="openExportDrawer()"><i class="ti ti-download" style="font-size:13px;"></i> Export</button>
+      <div class="sb"><i class="ti ti-search"></i><input type="text" id="pSearch" placeholder="Search merchant name or ID…" oninput="applyFilters()"></div>
+      <select class="tsel" id="pStatus" onchange="applyFilters()"><option value="">All statuses</option><option value="active">Active</option><option value="pending">Pending</option><option value="inactive">Inactive</option></select>
+      <select class="tsel" id="pIntl" onchange="applyFilters()"><option value="">All merchants</option><option value="yes">Intl enabled</option><option value="no">Intl disabled</option></select>
+      <div class="tsep"></div>
+      <span id="pCount" class="cbadge">5 merchants</span>
+      <button class="btn btn-g" onclick="openExportDrawer()"><i class="ti ti-download" style="font-size:13px;"></i> Export</button>
     </div>
-
-    <div class="table-wrap">
-      <table class="pricing-table">
-        <thead>
-          <tr>
-            <th style="width:32px;"></th>
-            <th>Merchant</th>
-            <th>Category</th>
-            <th>Gateway fee</th>
-            <th>MDR</th>
-            <th>Intl cards</th>
-            <th>Status</th>
-            <th style="width:44px;"></th>
-          </tr>
-        </thead>
-        <tbody id="tableBody"></tbody>
+    <div class="tw">
+      <table class="ptbl">
+        <thead><tr><th style="width:32px;"></th><th>Merchant</th><th>Category</th><th>Gateway fee</th><th>MDR</th><th>Intl cards</th><th>Status</th><th style="width:44px;"></th></tr></thead>
+        <tbody id="pBody"></tbody>
       </table>
     </div>
   </div>
-</div>
-</div>
 
-<!-- ━━ ADD MERCHANT DRAWER ━━ -->
-<div class="overlay" id="addOverlay" onclick="handleOverlayClick(event,'addOverlay')">
-  <div class="drawer">
-    <div class="drawer-header">
-      <div>
-        <div class="drawer-title">Add merchant pricing</div>
-        <div class="drawer-sub">Configure fee structure for a new merchant</div>
+  <!-- ════ GST INVOICE PAGE ════ -->
+  <div class="page" id="page-gst">
+
+    <!-- Invoice list view -->
+    <div id="gst-list-view">
+      <div class="ph-row">
+        <div class="ph"><h1>GST Invoices</h1><p>Generate, manage and send GST-compliant invoices to merchants</p></div>
+        <div class="ph-actions">
+          <button class="btn btn-g" onclick="openGstExportDrawer()"><i class="ti ti-download" style="font-size:13px;"></i> Export</button>
+          <button class="btn btn-p" onclick="openInvGenerator()"><i class="ti ti-plus" style="font-size:13px;"></i> Generate invoice</button>
+        </div>
       </div>
-      <button class="drawer-close" onclick="closeOverlay('addOverlay')"><i class="ti ti-x"></i></button>
+      <div class="section-label">Invoice Overview</div>
+      <div class="cards4">
+        <div class="ov-card"><div class="ovc-head"><span class="ovc-label">Total Invoices</span><span class="ovc-info">?</span></div><div class="ovc-val">12</div><div class="ovc-sub">this financial year</div></div>
+        <div class="ov-card"><div class="ovc-head"><span class="ovc-label">Total GST Collected</span><span class="ovc-info">?</span></div><div class="ovc-val">₹1.24L</div><div class="ovc-sub">18% GST on fees</div></div>
+        <div class="ov-card"><div class="ovc-head"><span class="ovc-label">Paid Invoices</span><span class="ovc-info">?</span></div><div class="ovc-val">9</div><div class="ovc-sub">3 pending payment</div></div>
+        <div class="ov-card"><div class="ovc-head"><span class="ovc-label">Overdue</span><span class="ovc-info">?</span></div><div class="ovc-val">1</div><div class="ovc-sub">₹18,230 outstanding</div></div>
+      </div>
+
+      <div class="toolbar">
+        <div class="sb"><i class="ti ti-search"></i><input type="text" id="gSearch" placeholder="Search invoice number or merchant…" oninput="applyGstFilters()"></div>
+        <select class="tsel" id="gMerchant" onchange="applyGstFilters()"><option value="">All merchants</option><option value="Karbon">Karbon</option><option value="Win Vista">Win Vista</option><option value="Nexora Labs">Nexora Labs</option><option value="Zappify">Zappify</option><option value="TruFinance">TruFinance</option></select>
+        <select class="tsel" id="gStatus" onchange="applyGstFilters()"><option value="">All statuses</option><option value="paid">Paid</option><option value="draft">Draft</option><option value="overdue">Overdue</option><option value="pending">Pending</option></select>
+        <select class="tsel" id="gPeriod" onchange="applyGstFilters()"><option value="">All periods</option><option value="Q1">Q1 (Apr–Jun)</option><option value="Q2">Q2 (Jul–Sep)</option><option value="Q3">Q3 (Oct–Dec)</option><option value="Q4">Q4 (Jan–Mar)</option></select>
+        <div class="tsep"></div>
+        <span id="gCount" class="cbadge">12 invoices</span>
+      </div>
+      <div class="tw">
+        <table class="ptbl">
+          <thead><tr><th>Invoice No.</th><th>Merchant</th><th>Period</th><th>Taxable amount</th><th>CGST (9%)</th><th>SGST (9%)</th><th>Total incl. GST</th><th>Status</th><th style="width:44px;"></th></tr></thead>
+          <tbody id="gBody"></tbody>
+        </table>
+      </div>
     </div>
-    <div class="drawer-steps" id="drawerSteps">
-      <div class="step-item"><div class="step-num active" id="snum-1">1</div><div class="step-label active" id="slbl-1">Merchant info</div></div>
-      <div class="step-connector" id="scon-1"></div>
-      <div class="step-item"><div class="step-num" id="snum-2">2</div><div class="step-label" id="slbl-2">Transaction fees</div></div>
-      <div class="step-connector" id="scon-2"></div>
-      <div class="step-item"><div class="step-num" id="snum-3">3</div><div class="step-label" id="slbl-3">Other fees</div></div>
-      <div class="step-connector" id="scon-3"></div>
-      <div class="step-item"><div class="step-num" id="snum-4">4</div><div class="step-label" id="slbl-4">Review</div></div>
-    </div>
-    <div class="drawer-body" id="addDrawerBody">
-      <!-- Step 1 -->
-      <div id="step-1">
-        <div class="form-section">
-          <div class="form-section-title"><i class="ti ti-building-store"></i> Merchant details</div>
-          <div class="form-row cols-2">
-            <div class="form-group"><label class="form-label">Merchant name <span style="color:#be123c">*</span></label><input class="form-input" id="f-name" type="text" placeholder="e.g. Karbon"></div>
-            <div class="form-group"><label class="form-label">Business category <span style="color:#be123c">*</span></label>
-              <select class="form-select" id="f-category"><option value="">Select category</option><option>B2B SaaS</option><option>E-commerce</option><option>Travel & Tours</option><option>EdTech</option><option>NBFC / Lending</option><option>Healthcare</option><option>Gaming</option><option>Other</option></select>
+
+    <!-- Invoice generator view -->
+    <div id="gst-gen-view" style="display:none;">
+      <div class="ph-row">
+        <div class="ph"><h1>Generate GST Invoice</h1><p>Fee configs are auto-pulled from the selected merchant's pricing profile</p></div>
+        <div class="ph-actions">
+          <button class="btn btn-g" onclick="closeInvGenerator()"><i class="ti ti-arrow-left" style="font-size:13px;"></i> Back to invoices</button>
+        </div>
+      </div>
+      <div class="igw">
+        <div class="igw-header">
+          <div><div class="igw-title">Invoice details</div><div class="igw-sub">Fill in the details below — fee amounts are pulled automatically from pricing config</div></div>
+        </div>
+        <div class="igw-body">
+          <div class="gen-grid">
+            <div>
+              <div class="fsec">
+                <div class="fst"><i class="ti ti-building-store"></i> Merchant & period</div>
+                <div class="fr c2">
+                  <div class="fg"><label class="flbl">Merchant <span style="color:#be123c">*</span></label>
+                    <select class="fsel" id="gen-merchant" onchange="pullFeeConfig()"><option value="">Select merchant</option><option>Karbon</option><option>Win Vista</option><option>Nexora Labs</option><option>Zappify</option><option>TruFinance</option></select>
+                  </div>
+                  <div class="fg"><label class="flbl">Invoice type</label>
+                    <select class="fsel" id="gen-type"><option value="partner-to-merchant">Partner → Merchant</option><option value="merchant-to-customer">Merchant → Customer</option><option value="payglocal-to-partner">PayGlocal → Partner</option></select>
+                  </div>
+                </div>
+                <div class="fr c2">
+                  <div class="fg"><label class="flbl">Billing period</label>
+                    <select class="fsel" id="gen-period"><option>April 2025</option><option>May 2025</option><option>June 2025</option><option selected>July 2025</option><option>August 2025</option></select>
+                  </div>
+                  <div class="fg"><label class="flbl">Invoice date</label><input class="fi" type="date" id="gen-date" value="2025-07-01"></div>
+                </div>
+                <div class="fr c2">
+                  <div class="fg"><label class="flbl">Due date</label><input class="fi" type="date" id="gen-due" value="2025-07-15"></div>
+                  <div class="fg"><label class="flbl">Invoice number</label><input class="fi" type="text" id="gen-invno" placeholder="Auto-generated"></div>
+                </div>
+              </div>
+              <div class="fsec">
+                <div class="fst"><i class="ti ti-chart-bar"></i> Transaction volume</div>
+                <div class="fr c2">
+                  <div class="fg"><label class="flbl">Gross txn value (₹)</label><div class="iw"><span class="ipfx">₹</span><input class="fi pfx" type="number" id="gen-vol" placeholder="0.00" oninput="recalcInvoice()"></div></div>
+                  <div class="fg"><label class="flbl">Number of transactions</label><input class="fi" type="number" id="gen-txns" placeholder="0" oninput="recalcInvoice()"></div>
+                </div>
+                <div class="fr c2">
+                  <div class="fg"><label class="flbl">Refunds processed</label><div class="iw"><span class="ipfx">₹</span><input class="fi pfx" type="number" id="gen-refvol" placeholder="0" oninput="recalcInvoice()"></div></div>
+                  <div class="fg"><label class="flbl">Chargebacks raised</label><input class="fi" type="number" id="gen-cbs" placeholder="0" oninput="recalcInvoice()"></div>
+                </div>
+              </div>
+              <div class="fsec">
+                <div class="fst"><i class="ti ti-receipt"></i> Applicable fee config</div>
+                <div id="gen-fee-display" style="background:var(--surf);border:1px solid var(--border);border-radius:var(--rmd);padding:14px;font-size:12.5px;color:var(--tm);font-style:italic;">Select a merchant to pull their fee configuration</div>
+              </div>
+            </div>
+            <div>
+              <div class="fsec">
+                <div class="fst"><i class="ti ti-calculator"></i> Invoice preview</div>
+                <div id="gen-preview" style="background:var(--surf);border:1px solid var(--border);border-radius:var(--rmd);padding:18px;"></div>
+              </div>
+              <div style="display:flex;gap:10px;margin-top:16px;">
+                <button class="btn btn-p" style="flex:1;" onclick="createInvoice()"><i class="ti ti-file-check" style="font-size:13px;"></i> Create invoice</button>
+                <button class="btn btn-g" onclick="saveDraft()"><i class="ti ti-device-floppy" style="font-size:13px;"></i> Save draft</button>
+              </div>
             </div>
           </div>
-          <div class="form-row cols-2">
-            <div class="form-group"><label class="form-label">Merchant ID</label><input class="form-input" id="f-id" type="text" placeholder="Auto-generated if blank"><div class="form-hint">Leave blank to auto-assign</div></div>
-            <div class="form-group"><label class="form-label">Status</label><select class="form-select" id="f-status"><option value="active">Active</option><option value="pending">Pending</option><option value="inactive">Inactive</option></select></div>
-          </div>
-        </div>
-        <div class="form-section">
-          <div class="form-section-title"><i class="ti ti-world"></i> International payments</div>
-          <div class="toggle-row">
-            <div class="toggle-info"><div class="toggle-title">Enable international card acceptance</div><div class="toggle-desc">Merchant can accept Visa/Mastercard/Amex from international issuers</div></div>
-            <label class="toggle"><input type="checkbox" id="f-intl-toggle" onchange="toggleIntlFields()"><span class="toggle-slider"></span></label>
-          </div>
         </div>
       </div>
-      <!-- Step 2 -->
+    </div>
+
+    <!-- Invoice detail view -->
+    <div id="gst-detail-view" style="display:none;">
+      <div class="inv-action-bar">
+        <div class="inv-back" onclick="closeInvDetail()"><i class="ti ti-arrow-left"></i> Back to invoices</div>
+        <div class="inv-status-group">
+          <span id="inv-detail-status"></span>
+          <button class="btn btn-g" onclick="window.print()"><i class="ti ti-printer" style="font-size:13px;"></i> Print</button>
+          <button class="btn btn-g"><i class="ti ti-download" style="font-size:13px;"></i> Download PDF</button>
+          <button class="btn btn-p"><i class="ti ti-send" style="font-size:13px;"></i> Send to merchant</button>
+        </div>
+      </div>
+      <div class="inv-doc" id="inv-doc-render"></div>
+    </div>
+  </div>
+</div><!-- /main -->
+</div><!-- /layout -->
+
+<!-- ── ADD MERCHANT DRAWER ── -->
+<div class="overlay" id="addOverlay" onclick="hoc(event,'addOverlay')">
+  <div class="drawer">
+    <div class="dh"><div><div class="dt">Add merchant pricing</div><div class="ds">Configure fee structure for a new merchant</div></div><button class="dc" onclick="co('addOverlay')"><i class="ti ti-x"></i></button></div>
+    <div class="dsteps" id="dSteps">
+      <div class="si"><div class="sn active" id="sn1">1</div><div class="sl active" id="sl1">Merchant info</div></div>
+      <div class="sc-conn" id="sc1"></div>
+      <div class="si"><div class="sn" id="sn2">2</div><div class="sl" id="sl2">Transaction fees</div></div>
+      <div class="sc-conn" id="sc2"></div>
+      <div class="si"><div class="sn" id="sn3">3</div><div class="sl" id="sl3">Other fees</div></div>
+      <div class="sc-conn" id="sc3"></div>
+      <div class="si"><div class="sn" id="sn4">4</div><div class="sl" id="sl4">Review</div></div>
+    </div>
+    <div class="db" id="adb">
+      <div id="step-1">
+        <div class="fsec"><div class="fst"><i class="ti ti-building-store"></i> Merchant details</div>
+          <div class="fr c2"><div class="fg"><label class="flbl">Merchant name <span style="color:#be123c">*</span></label><input class="fi" id="f-name" type="text" placeholder="e.g. Karbon"></div><div class="fg"><label class="flbl">Business category <span style="color:#be123c">*</span></label><select class="fsel" id="f-cat"><option value="">Select category</option><option>B2B SaaS</option><option>E-commerce</option><option>Travel & Tours</option><option>EdTech</option><option>NBFC / Lending</option><option>Healthcare</option><option>Gaming</option><option>Other</option></select></div></div>
+          <div class="fr c2"><div class="fg"><label class="flbl">Merchant ID</label><input class="fi" id="f-mid" type="text" placeholder="Auto-generated if blank"><div class="fhint">Leave blank to auto-assign</div></div><div class="fg"><label class="flbl">Status</label><select class="fsel" id="f-st"><option value="active">Active</option><option value="pending">Pending</option><option value="inactive">Inactive</option></select></div></div>
+        </div>
+        <div class="fsec"><div class="fst"><i class="ti ti-world"></i> International payments</div>
+          <div class="tr-row"><div class="tr-info"><div class="tr-t">Enable international card acceptance</div><div class="tr-d">Merchant can accept Visa/Mastercard/Amex from international issuers</div></div><label class="tog"><input type="checkbox" id="f-intl" onchange="togIntl()"><span class="tog-sl"></span></label></div>
+        </div>
+      </div>
       <div id="step-2" style="display:none;">
-        <div class="form-section">
-          <div class="form-section-title"><i class="ti ti-building-bank"></i> Payment gateway fee</div>
-          <div class="form-row cols-2">
-            <div class="form-group"><label class="form-label">Percentage <span style="color:#be123c">*</span></label><div class="input-wrap"><input class="form-input sfx" id="f-gw-pct" type="number" step="0.01" min="0" placeholder="1.75"><span class="isfx">%</span></div></div>
-            <div class="form-group"><label class="form-label">Flat fee per transaction <span style="color:#be123c">*</span></label><div class="input-wrap"><span class="ipfx">₹</span><input class="form-input pfx" id="f-gw-flat" type="number" step="0.5" min="0" placeholder="2.00"></div></div>
-          </div>
-        </div>
-        <div class="form-section">
-          <div class="form-section-title"><i class="ti ti-percentage"></i> MDR</div>
-          <div class="form-row cols-2">
-            <div class="form-group"><label class="form-label">MDR percentage <span style="color:#be123c">*</span></label><div class="input-wrap"><input class="form-input sfx" id="f-mdr-pct" type="number" step="0.01" min="0" placeholder="1.90"><span class="isfx">%</span></div></div>
-            <div class="form-group"><label class="form-label">MDR flat component</label><div class="input-wrap"><span class="ipfx">₹</span><input class="form-input pfx" id="f-mdr-flat" type="number" step="0.5" min="0" placeholder="3.00"></div></div>
-          </div>
-        </div>
-        <div class="form-section" id="intl-fee-section" style="display:none;">
-          <div class="form-section-title"><i class="ti ti-world"></i> International card fee</div>
-          <div class="form-row cols-2">
-            <div class="form-group"><label class="form-label">Intl card %</label><div class="input-wrap"><input class="form-input sfx" id="f-intl-pct" type="number" step="0.01" placeholder="3.50"><span class="isfx">%</span></div></div>
-            <div class="form-group"><label class="form-label">Intl card flat fee</label><div class="input-wrap"><span class="ipfx">₹</span><input class="form-input pfx" id="f-intl-flat" type="number" step="1" placeholder="10"></div></div>
-          </div>
-          <div class="form-group"><label class="form-label">FX spread</label><div class="input-wrap" style="max-width:150px;"><input class="form-input sfx" id="f-fx" type="number" step="0.05" placeholder="0.50"><span class="isfx">%</span></div><div class="form-hint">Applied on top of live exchange rate</div></div>
-        </div>
+        <div class="fsec"><div class="fst"><i class="ti ti-building-bank"></i> Payment gateway fee</div><div class="fr c2"><div class="fg"><label class="flbl">Percentage <span style="color:#be123c">*</span></label><div class="iw"><input class="fi sfx" id="f-gw-p" type="number" step=".01" min="0" placeholder="1.75"><span class="isfx">%</span></div></div><div class="fg"><label class="flbl">Flat fee <span style="color:#be123c">*</span></label><div class="iw"><span class="ipfx">₹</span><input class="fi pfx" id="f-gw-f" type="number" step=".5" min="0" placeholder="2.00"></div></div></div></div>
+        <div class="fsec"><div class="fst"><i class="ti ti-percentage"></i> MDR</div><div class="fr c2"><div class="fg"><label class="flbl">MDR % <span style="color:#be123c">*</span></label><div class="iw"><input class="fi sfx" id="f-mdr-p" type="number" step=".01" min="0" placeholder="1.90"><span class="isfx">%</span></div></div><div class="fg"><label class="flbl">MDR flat</label><div class="iw"><span class="ipfx">₹</span><input class="fi pfx" id="f-mdr-f" type="number" step=".5" min="0" placeholder="3.00"></div></div></div></div>
+        <div class="fsec" id="intl-sec" style="display:none;"><div class="fst"><i class="ti ti-world"></i> International card fee</div><div class="fr c2"><div class="fg"><label class="flbl">Intl %</label><div class="iw"><input class="fi sfx" id="f-ip" type="number" step=".01" placeholder="3.50"><span class="isfx">%</span></div></div><div class="fg"><label class="flbl">Intl flat</label><div class="iw"><span class="ipfx">₹</span><input class="fi pfx" id="f-if" type="number" step="1" placeholder="10"></div></div></div><div class="fg"><label class="flbl">FX spread</label><div class="iw" style="max-width:150px;"><input class="fi sfx" id="f-fx" type="number" step=".05" placeholder="0.50"><span class="isfx">%</span></div><div class="fhint">Applied on top of live exchange rate</div></div></div>
       </div>
-      <!-- Step 3 -->
       <div id="step-3" style="display:none;">
-        <div class="form-section">
-          <div class="form-section-title"><i class="ti ti-refresh"></i> Refund & dispute fees</div>
-          <div class="form-row cols-2">
-            <div class="form-group"><label class="form-label">Refund fee</label><div class="input-wrap"><span class="ipfx">₹</span><input class="form-input pfx" id="f-refund" type="number" step="5" placeholder="25"></div><div class="form-hint">Flat fee per refund</div></div>
-            <div class="form-group"><label class="form-label">Chargeback fee</label><div class="input-wrap"><span class="ipfx">₹</span><input class="form-input pfx" id="f-chargeback" type="number" step="50" placeholder="500"></div><div class="form-hint">Flat fee per dispute</div></div>
-          </div>
-        </div>
-        <div class="form-section">
-          <div class="form-section-title"><i class="ti ti-receipt"></i> Setup & recurring fees</div>
-          <div class="form-row cols-2">
-            <div class="form-group"><label class="form-label">One-time setup fee</label><div class="input-wrap"><span class="ipfx">₹</span><input class="form-input pfx" id="f-setup" type="number" step="500" placeholder="0"></div><div class="form-hint">Charged once on activation</div></div>
-            <div class="form-group"><label class="form-label">Monthly platform fee</label><div class="input-wrap"><span class="ipfx">₹</span><input class="form-input pfx" id="f-monthly" type="number" step="99" placeholder="0"></div><div class="form-hint">Recurring monthly charge</div></div>
-          </div>
-        </div>
-        <div class="form-section">
-          <div class="form-section-title"><i class="ti ti-note"></i> Internal notes</div>
-          <textarea class="form-input" id="f-notes" style="height:75px;padding-top:9px;resize:vertical;line-height:1.5;" placeholder="Custom rate justification, special terms…"></textarea>
-        </div>
+        <div class="fsec"><div class="fst"><i class="ti ti-refresh"></i> Refund & dispute fees</div><div class="fr c2"><div class="fg"><label class="flbl">Refund fee</label><div class="iw"><span class="ipfx">₹</span><input class="fi pfx" id="f-ref" type="number" step="5" placeholder="25"></div><div class="fhint">Flat per refund</div></div><div class="fg"><label class="flbl">Chargeback fee</label><div class="iw"><span class="ipfx">₹</span><input class="fi pfx" id="f-cb" type="number" step="50" placeholder="500"></div><div class="fhint">Flat per dispute</div></div></div></div>
+        <div class="fsec"><div class="fst"><i class="ti ti-receipt"></i> Setup & recurring fees</div><div class="fr c2"><div class="fg"><label class="flbl">Setup fee</label><div class="iw"><span class="ipfx">₹</span><input class="fi pfx" id="f-su" type="number" step="500" placeholder="0"></div><div class="fhint">One-time on activation</div></div><div class="fg"><label class="flbl">Monthly fee</label><div class="iw"><span class="ipfx">₹</span><input class="fi pfx" id="f-mo" type="number" step="99" placeholder="0"></div><div class="fhint">Recurring monthly</div></div></div></div>
+        <div class="fsec"><div class="fst"><i class="ti ti-note"></i> Internal notes</div><textarea class="fi" id="f-notes" style="height:75px;padding-top:9px;resize:vertical;line-height:1.5;" placeholder="Custom rate justification, special terms…"></textarea></div>
       </div>
-      <!-- Step 4 -->
       <div id="step-4" style="display:none;">
-        <div class="fee-preview" id="reviewPreview"></div>
-        <div style="background:var(--bg-surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:14px 16px;">
-          <div style="font-size:11px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:9px;">Confirm before saving</div>
-          <div style="font-size:13px;color:var(--text-secondary);line-height:1.65;">All fees will be applied to this merchant upon activation. You can edit them anytime from the pricing table.</div>
-          <div style="margin-top:12px;display:flex;align-items:center;gap:8px;"><input type="checkbox" id="f-confirm" style="width:14px;height:14px;accent-color:var(--blue);cursor:pointer;"><label for="f-confirm" style="font-size:13px;color:var(--text-primary);cursor:pointer;font-weight:500;">I confirm the fee configuration is correct</label></div>
-        </div>
+        <div class="fprev" id="fprev"></div>
+        <div style="background:var(--surf);border:1px solid var(--border);border-radius:var(--rmd);padding:14px 16px;"><div style="font-size:11px;font-weight:600;color:var(--tm);text-transform:uppercase;letter-spacing:.07em;margin-bottom:9px;">Confirm before saving</div><div style="font-size:13px;color:var(--ts);line-height:1.65;">All fees will apply on activation. You can edit them anytime.</div><div style="margin-top:12px;display:flex;align-items:center;gap:8px;"><input type="checkbox" id="f-conf" style="width:14px;height:14px;accent-color:var(--blue);cursor:pointer;"><label for="f-conf" style="font-size:13px;color:var(--tp);cursor:pointer;font-weight:500;">I confirm the fee configuration is correct</label></div></div>
       </div>
     </div>
-    <div class="drawer-footer" id="addDrawerFooter">
-      <span class="step-indicator" id="stepIndicator">Step 1 of 4</span>
-      <div style="flex:1;"></div>
-      <button class="btn btn-ghost" id="btnBack" onclick="drawerPrev()" style="display:none;">Back</button>
-      <button class="btn btn-primary" id="btnNext" onclick="drawerNext()">Continue</button>
-    </div>
+    <div class="df" id="adf"><span class="sind" id="sind">Step 1 of 4</span><div style="flex:1;"></div><button class="btn btn-g" id="bBack" onclick="dPrev()" style="display:none;">Back</button><button class="btn btn-p" id="bNext" onclick="dNext()">Continue</button></div>
   </div>
 </div>
 
-<!-- ━━ EXPORT DRAWER ━━ -->
-<div class="overlay" id="exportOverlay" onclick="handleOverlayClick(event,'exportOverlay')">
+<!-- ── EXPORT DRAWER (pricing) ── -->
+<div class="overlay" id="expOverlay" onclick="hoc(event,'expOverlay')">
   <div class="drawer" style="width:460px;">
-    <div class="drawer-header">
-      <div>
-        <div class="drawer-title">Export pricing data</div>
-        <div class="drawer-sub">Choose format, scope, and fields to include</div>
+    <div class="dh"><div><div class="dt">Export pricing data</div><div class="ds">Choose format, scope and fields</div></div><button class="dc" onclick="co('expOverlay')"><i class="ti ti-x"></i></button></div>
+    <div class="eod-body">
+      <div class="eds"><div class="edl">Export format</div>
+        <div class="eoc sel" id="ef-csv" onclick="selFmt('csv')"><div class="eoc-ic" style="background:#f0fdf4;color:#166534;"><i class="ti ti-file-spreadsheet"></i></div><div class="eoc-inf"><div class="eoc-n">CSV</div><div class="eoc-d">Excel / Sheets</div></div><div class="eoc-ck"><i class="ti ti-check" style="font-size:10px;"></i></div></div>
+        <div class="eoc" id="ef-json" onclick="selFmt('json')"><div class="eoc-ic" style="background:#eff6ff;color:#1d4ed8;"><i class="ti ti-braces"></i></div><div class="eoc-inf"><div class="eoc-n">JSON</div><div class="eoc-d">API / developer use</div></div><div class="eoc-ck"></div></div>
+        <div class="eoc" id="ef-pdf" onclick="selFmt('pdf')"><div class="eoc-ic" style="background:#fff1f2;color:#be123c;"><i class="ti ti-file-text"></i></div><div class="eoc-inf"><div class="eoc-n">PDF report</div><div class="eoc-d">Print / share</div></div><div class="eoc-ck"></div></div>
       </div>
-      <button class="drawer-close" onclick="closeOverlay('exportOverlay')"><i class="ti ti-x"></i></button>
-    </div>
-    <div class="export-drawer-body">
-      <div class="edrawer-section">
-        <div class="edrawer-label">Export format</div>
-        <div class="export-option-card selected" id="ef-csv" onclick="selectExportFormat('csv')">
-          <div class="eoc-icon" style="background:#f0fdf4;color:#166534;"><i class="ti ti-file-spreadsheet"></i></div>
-          <div class="eoc-info"><div class="eoc-name">CSV</div><div class="eoc-desc">Comma-separated values, opens in Excel / Sheets</div></div>
-          <div class="eoc-check"><i class="ti ti-check" style="font-size:10px;"></i></div>
-        </div>
-        <div class="export-option-card" id="ef-json" onclick="selectExportFormat('json')">
-          <div class="eoc-icon" style="background:#eff6ff;color:#1d4ed8;"><i class="ti ti-braces"></i></div>
-          <div class="eoc-info"><div class="eoc-name">JSON</div><div class="eoc-desc">Structured data for API or developer use</div></div>
-          <div class="eoc-check"></div>
-        </div>
-        <div class="export-option-card" id="ef-pdf" onclick="selectExportFormat('pdf')">
-          <div class="eoc-icon" style="background:#fff1f2;color:#be123c;"><i class="ti ti-file-text"></i></div>
-          <div class="eoc-info"><div class="eoc-name">PDF report</div><div class="eoc-desc">Formatted report for sharing or printing</div></div>
-          <div class="eoc-check"></div>
+      <div class="eds"><div class="edl">Scope</div>
+        <label class="esc sel" id="es-all" onclick="selScope('all')"><div style="display:flex;align-items:center;gap:9px;"><input type="radio" name="esc" checked><div><div style="font-size:13px;font-weight:500;">All merchants</div><div style="font-size:12px;color:var(--ts);">Export all 5 merchants</div></div></div><i class="ti ti-users" style="font-size:15px;color:var(--tm);"></i></label>
+        <label class="esc" id="es-act" onclick="selScope('act')"><div style="display:flex;align-items:center;gap:9px;"><input type="radio" name="esc"><div><div style="font-size:13px;font-weight:500;">Active only</div><div style="font-size:12px;color:var(--ts);">4 merchants</div></div></div><i class="ti ti-user-check" style="font-size:15px;color:var(--tm);"></i></label>
+      </div>
+      <div class="eds"><div class="edl">Fields to include</div>
+        <div class="efg2">
+          <label class="efi"><input type="checkbox" checked><label>Merchant ID & Name</label></label>
+          <label class="efi"><input type="checkbox" checked><label>Gateway fee</label></label>
+          <label class="efi"><input type="checkbox" checked><label>MDR</label></label>
+          <label class="efi"><input type="checkbox" checked><label>International card fee</label></label>
+          <label class="efi"><input type="checkbox" checked><label>Refund & chargeback</label></label>
+          <label class="efi"><input type="checkbox" checked><label>Setup & monthly fee</label></label>
+          <label class="efi"><input type="checkbox"><label>FX spread</label></label>
+          <label class="efi"><input type="checkbox"><label>Internal notes</label></label>
         </div>
       </div>
-
-      <div class="edrawer-section">
-        <div class="edrawer-label">Scope</div>
-        <label class="export-scope-card selected" id="es-all" onclick="selectScope('all')">
-          <div style="display:flex;align-items:center;gap:9px;"><input type="radio" name="escope" checked> <div><div style="font-size:13px;font-weight:500;color:var(--text-primary);">All merchants</div><div style="font-size:12px;color:var(--text-secondary);">Export pricing for all 5 merchants</div></div></div>
-          <i class="ti ti-users" style="font-size:15px;color:var(--text-muted);"></i>
-        </label>
-        <label class="export-scope-card" id="es-active" onclick="selectScope('active')">
-          <div style="display:flex;align-items:center;gap:9px;"><input type="radio" name="escope"> <div><div style="font-size:13px;font-weight:500;color:var(--text-primary);">Active only</div><div style="font-size:12px;color:var(--text-secondary);">4 merchants with active status</div></div></div>
-          <i class="ti ti-user-check" style="font-size:15px;color:var(--text-muted);"></i>
-        </label>
-      </div>
-
-      <div class="edrawer-section">
-        <div class="edrawer-label">Fields to include</div>
-        <div class="export-field-grid">
-          <label class="export-field-item"><input type="checkbox" checked> <label>Merchant ID & Name</label></label>
-          <label class="export-field-item"><input type="checkbox" checked> <label>Gateway fee</label></label>
-          <label class="export-field-item"><input type="checkbox" checked> <label>MDR</label></label>
-          <label class="export-field-item"><input type="checkbox" checked> <label>International card fee</label></label>
-          <label class="export-field-item"><input type="checkbox" checked> <label>Refund & chargeback</label></label>
-          <label class="export-field-item"><input type="checkbox" checked> <label>Setup & monthly fee</label></label>
-          <label class="export-field-item"><input type="checkbox"> <label>FX spread</label></label>
-          <label class="export-field-item"><input type="checkbox"> <label>Internal notes</label></label>
-        </div>
-      </div>
-
-      <div class="edrawer-section">
-        <div class="edrawer-label">Preview (first 2 rows)</div>
-        <div class="export-preview">
-          <div class="ep-h">ID,Name,Category,Gateway%,GatewayFlat,MDR%,Refund,Chargeback</div>
-          <div class="ep-r">MRC-2024-KB-001,Karbon,B2B SaaS,1.75,2.00,1.90,25,500</div>
-          <div class="ep-r">MRC-2024-WV-002,Win Vista,Travel &amp; Tours,2.00,3.00,2.10,30,600</div>
-        </div>
+      <div class="eds"><div class="edl">Preview</div>
+        <div class="eprev"><div class="eph">ID,Name,Category,Gateway%,GatewayFlat,MDR%,Refund,Chargeback</div><div class="epr">MRC-2024-KB-001,Karbon,B2B SaaS,1.75,2.00,1.90,25,500</div><div class="epr">MRC-2024-WV-002,Win Vista,Travel &amp; Tours,2.00,3.00,2.10,30,600</div></div>
       </div>
     </div>
-    <div class="drawer-footer">
-      <span style="font-size:12px;color:var(--text-muted);">5 merchants · CSV format</span>
-      <div style="flex:1;"></div>
-      <button class="btn btn-ghost" onclick="closeOverlay('exportOverlay')">Cancel</button>
-      <button class="btn btn-primary" onclick="doExport()"><i class="ti ti-download" style="font-size:13px;"></i> Download</button>
+    <div class="df"><span style="font-size:12px;color:var(--tm);">5 merchants · CSV format</span><div style="flex:1;"></div><button class="btn btn-g" onclick="co('expOverlay')">Cancel</button><button class="btn btn-p" onclick="doExport()"><i class="ti ti-download" style="font-size:13px;"></i> Download</button></div>
+  </div>
+</div>
+
+<!-- ── GST EXPORT DRAWER ── -->
+<div class="overlay" id="gstExpOverlay" onclick="hoc(event,'gstExpOverlay')">
+  <div class="drawer" style="width:460px;">
+    <div class="dh"><div><div class="dt">Export GST invoices</div><div class="ds">Download invoice records for filing or audit</div></div><button class="dc" onclick="co('gstExpOverlay')"><i class="ti ti-x"></i></button></div>
+    <div class="eod-body">
+      <div class="eds"><div class="edl">Export format</div>
+        <div class="eoc sel"><div class="eoc-ic" style="background:#f0fdf4;color:#166534;"><i class="ti ti-file-spreadsheet"></i></div><div class="eoc-inf"><div class="eoc-n">CSV</div><div class="eoc-d">For GSTR-1 / accounting software</div></div><div class="eoc-ck"><i class="ti ti-check" style="font-size:10px;"></i></div></div>
+        <div class="eoc"><div class="eoc-ic" style="background:#fff1f2;color:#be123c;"><i class="ti ti-file-text"></i></div><div class="eoc-inf"><div class="eoc-n">PDF — all invoices</div><div class="eoc-d">One PDF per invoice, zipped</div></div><div class="eoc-ck"></div></div>
+        <div class="eoc"><div class="eoc-ic" style="background:#f5f3ff;color:#6d28d9;"><i class="ti ti-file-code"></i></div><div class="eoc-inf"><div class="eoc-n">GSTR-1 JSON</div><div class="eoc-d">GST portal-ready format</div></div><div class="eoc-ck"></div></div>
+      </div>
+      <div class="eds"><div class="edl">Period</div>
+        <div class="fr c2" style="margin:0;">
+          <div class="fg"><label class="flbl">From</label><input class="fi" type="month" value="2025-04"></div>
+          <div class="fg"><label class="flbl">To</label><input class="fi" type="month" value="2025-07"></div>
+        </div>
+      </div>
+      <div class="eds"><div class="edl">Merchant scope</div>
+        <label class="esc sel"><div style="display:flex;align-items:center;gap:9px;"><input type="radio" name="gsc" checked><div><div style="font-size:13px;font-weight:500;">All merchants</div></div></div></label>
+        <label class="esc"><div style="display:flex;align-items:center;gap:9px;"><input type="radio" name="gsc"><div><div style="font-size:13px;font-weight:500;">Select specific merchants</div></div></div></label>
+      </div>
+      <div class="eds"><div class="edl">Include fields</div>
+        <div class="efg2">
+          <label class="efi"><input type="checkbox" checked><label>Invoice number</label></label>
+          <label class="efi"><input type="checkbox" checked><label>GSTIN</label></label>
+          <label class="efi"><input type="checkbox" checked><label>Taxable value</label></label>
+          <label class="efi"><input type="checkbox" checked><label>CGST / SGST / IGST</label></label>
+          <label class="efi"><input type="checkbox" checked><label>Invoice total</label></label>
+          <label class="efi"><input type="checkbox"><label>HSN/SAC code</label></label>
+        </div>
+      </div>
     </div>
+    <div class="df"><span style="font-size:12px;color:var(--tm);">12 invoices · CSV</span><div style="flex:1;"></div><button class="btn btn-g" onclick="co('gstExpOverlay')">Cancel</button><button class="btn btn-p"><i class="ti ti-download" style="font-size:13px;"></i> Download</button></div>
   </div>
 </div>
 
 <script>
-const DATA = [
-  { id:'MRC-2024-KB-001', name:'Karbon', initials:'KB', av:'av-b', category:'B2B SaaS', status:'active', gw:{pct:'1.75',flat:'2.00'}, mdr:{pct:'1.90',flat:'3.00'}, intl:{enabled:true,pct:'3.50',flat:'10'}, refund:'25', chargeback:'500', setup:'0', monthly:'0', fx:'0.50', notes:'Custom rate negotiated Q3 2023. Volume discount applies above ₹50L/month.' },
-  { id:'MRC-2024-WV-002', name:'Win Vista', initials:'WV', av:'av-t', category:'Travel & Tours', status:'active', gw:{pct:'2.00',flat:'3.00'}, mdr:{pct:'2.10',flat:'4.00'}, intl:{enabled:true,pct:'3.80',flat:'12'}, refund:'30', chargeback:'600', setup:'5000', monthly:'999', fx:'0.75', notes:'Higher chargeback risk category. Monthly review in place.' },
-  { id:'MRC-2024-NX-003', name:'Nexora Labs', initials:'NX', av:'av-p', category:'EdTech', status:'active', gw:{pct:'1.80',flat:'2.50'}, mdr:{pct:'1.95',flat:'2.50'}, intl:{enabled:true,pct:'3.60',flat:'10'}, refund:'20', chargeback:'450', setup:'0', monthly:'499', fx:'0.60', notes:'' },
-  { id:'MRC-2024-ZP-004', name:'Zappify', initials:'ZP', av:'av-a', category:'E-commerce', status:'pending', gw:{pct:'1.90',flat:'2.00'}, mdr:{pct:'2.00',flat:'3.00'}, intl:{enabled:false,pct:'—',flat:'—'}, refund:'25', chargeback:'500', setup:'2000', monthly:'0', fx:'N/A', notes:'Onboarding pending KYC approval. Pricing locked until activation.' },
-  { id:'MRC-2023-TF-005', name:'TruFinance', initials:'TF', av:'av-g', category:'NBFC / Lending', status:'active', gw:{pct:'1.60',flat:'1.50'}, mdr:{pct:'1.75',flat:'2.00'}, intl:{enabled:true,pct:'3.20',flat:'8'}, refund:'20', chargeback:'400', setup:'0', monthly:'1499', fx:'0.45', notes:'Regulated entity. Pricing subject to RBI PA guidelines.' }
+/* ═══════════════════════════════════════════════
+   DATA
+═══════════════════════════════════════════════ */
+const MERCHANTS = [
+  {id:'MRC-2024-KB-001',name:'Karbon',initials:'KB',av:'av-b',category:'B2B SaaS',status:'active',gstin:'27AABCK1234M1Z5',gw:{pct:'1.75',flat:'2.00'},mdr:{pct:'1.90',flat:'3.00'},intl:{enabled:true,pct:'3.50',flat:'10'},refund:'25',chargeback:'500',setup:'0',monthly:'0',fx:'0.50',notes:'Custom rate negotiated Q3 2023. Volume discount above ₹50L/month.'},
+  {id:'MRC-2024-WV-002',name:'Win Vista',initials:'WV',av:'av-t',category:'Travel & Tours',status:'active',gstin:'29AABCW5678N1Z3',gw:{pct:'2.00',flat:'3.00'},mdr:{pct:'2.10',flat:'4.00'},intl:{enabled:true,pct:'3.80',flat:'12'},refund:'30',chargeback:'600',setup:'5000',monthly:'999',fx:'0.75',notes:'Higher chargeback risk. Monthly review in place.'},
+  {id:'MRC-2024-NX-003',name:'Nexora Labs',initials:'NX',av:'av-p',category:'EdTech',status:'active',gstin:'07AABCN9012P1Z1',gw:{pct:'1.80',flat:'2.50'},mdr:{pct:'1.95',flat:'2.50'},intl:{enabled:true,pct:'3.60',flat:'10'},refund:'20',chargeback:'450',setup:'0',monthly:'499',fx:'0.60',notes:''},
+  {id:'MRC-2024-ZP-004',name:'Zappify',initials:'ZP',av:'av-a',category:'E-commerce',status:'pending',gstin:'',gw:{pct:'1.90',flat:'2.00'},mdr:{pct:'2.00',flat:'3.00'},intl:{enabled:false,pct:'—',flat:'—'},refund:'25',chargeback:'500',setup:'2000',monthly:'0',fx:'N/A',notes:'Onboarding pending KYC. Pricing locked until activation.'},
+  {id:'MRC-2023-TF-005',name:'TruFinance',initials:'TF',av:'av-g',category:'NBFC / Lending',status:'active',gstin:'06AABCT3456Q1Z9',gw:{pct:'1.60',flat:'1.50'},mdr:{pct:'1.75',flat:'2.00'},intl:{enabled:true,pct:'3.20',flat:'8'},refund:'20',chargeback:'400',setup:'0',monthly:'1499',fx:'0.45',notes:'Regulated entity. Subject to RBI PA guidelines.'}
 ];
 
-let openId = null, openTab = {}, editingNote = null;
+const INVOICES = [
+  {no:'PGINV-2025-0012',merchant:'Karbon',period:'Q1',month:'Jun 2025',taxable:68420,cgst:6157.8,sgst:6157.8,total:80735.6,status:'paid',due:'2025-07-15'},
+  {no:'PGINV-2025-0011',merchant:'Win Vista',period:'Q1',month:'Jun 2025',taxable:52300,cgst:4707,sgst:4707,total:61714,status:'paid',due:'2025-07-15'},
+  {no:'PGINV-2025-0010',merchant:'Nexora Labs',period:'Q1',month:'Jun 2025',taxable:31800,cgst:2862,sgst:2862,total:37524,status:'paid',due:'2025-07-15'},
+  {no:'PGINV-2025-0009',merchant:'TruFinance',period:'Q1',month:'May 2025',taxable:44600,cgst:4014,sgst:4014,total:52628,status:'overdue',due:'2025-06-15'},
+  {no:'PGINV-2025-0008',merchant:'Karbon',period:'Q1',month:'May 2025',taxable:71200,cgst:6408,sgst:6408,total:84016,status:'paid',due:'2025-06-15'},
+  {no:'PGINV-2025-0007',merchant:'Win Vista',period:'Q1',month:'May 2025',taxable:48900,cgst:4401,sgst:4401,total:57702,status:'paid',due:'2025-06-15'},
+  {no:'PGINV-2025-0006',merchant:'Nexora Labs',period:'Q1',month:'Apr 2025',taxable:29500,cgst:2655,sgst:2655,total:34810,status:'paid',due:'2025-05-15'},
+  {no:'PGINV-2025-0005',merchant:'TruFinance',period:'Q1',month:'Apr 2025',taxable:38400,cgst:3456,sgst:3456,total:45312,status:'paid',due:'2025-05-15'},
+  {no:'PGINV-2025-0004',merchant:'Karbon',period:'Q1',month:'Apr 2025',taxable:65800,cgst:5922,sgst:5922,total:77644,status:'paid',due:'2025-05-15'},
+  {no:'PGINV-2025-0003',merchant:'Win Vista',period:'Q2',month:'Jul 2025',taxable:55100,cgst:4959,sgst:4959,total:65018,status:'draft',due:'2025-08-15'},
+  {no:'PGINV-2025-0002',merchant:'Nexora Labs',period:'Q2',month:'Jul 2025',taxable:34200,cgst:3078,sgst:3078,total:40356,status:'draft',due:'2025-08-15'},
+  {no:'PGINV-2025-0001',merchant:'Zappify',period:'Q2',month:'Jul 2025',taxable:18200,cgst:1638,sgst:1638,total:21476,status:'pending',due:'2025-08-15'},
+];
 
-function statusHTML(s) {
-  const m = {active:['s-active','Active'],pending:['s-pending','Pending'],inactive:['s-inactive','Inactive']};
-  const [c,l] = m[s]||['s-inactive','Unknown'];
-  return `<span class="status ${c}"><span class="status-dot"></span>${l}</span>`;
+/* ═══════════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════════ */
+function goPage(p) {
+  document.querySelectorAll('.page').forEach(el=>el.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(el=>el.classList.remove('active'));
+  if(p==='pricing'){ document.getElementById('page-pricing').classList.add('active'); document.getElementById('nav-pricing').classList.add('active'); }
+  else if(p==='gst'){ document.getElementById('page-gst').classList.add('active'); document.getElementById('nav-gst').classList.add('active'); showGstList(); }
+  else { document.getElementById('page-pricing').classList.add('active'); }
 }
-function intlHTML(m) {
-  if (m.intl.enabled) return `<span class="chip chip-green"><i class="ti ti-check" style="font-size:11px;margin-right:2px;"></i>Enabled</span>`;
-  return `<span class="chip chip-gray">Not enabled</span>`;
-}
 
-function detailHTML(m) {
-  const tab = openTab[m.id] || 'fees';
-  const fw = s => tab===s ? 'active' : '';
-  return `
-  <div class="detail-body">
-    <div class="detail-tabs">
-      <div class="dtab ${fw('fees')}" onclick="switchTab('${m.id}','fees')">Fee breakdown</div>
-      <div class="dtab ${fw('setup')}" onclick="switchTab('${m.id}','setup')">Setup & monthly</div>
-      <div class="dtab ${fw('notes')}" onclick="switchTab('${m.id}','notes')">Notes</div>
-      <div class="dtab ${fw('export')}" onclick="switchTab('${m.id}','export')">Export config</div>
+/* ═══════════════════════════════════════════════
+   PRICING TABLE
+═══════════════════════════════════════════════ */
+let openId=null, openTab={};
+
+function statBadge(s){const m={active:['s-act','Active'],pending:['s-pen','Pending'],inactive:['s-ina','Inactive']};const[c,l]=m[s]||['s-ina','—'];return`<span class="stat ${c}"><span class="sdot"></span>${l}</span>`;}
+function intlBadge(m){return m.intl.enabled?`<span class="chip chip-g"><i class="ti ti-check" style="font-size:11px;margin-right:2px;"></i>Enabled</span>`:`<span class="chip chip-gr">Not enabled</span>`;}
+
+function detHTML(m){
+  const tab=openTab[m.id]||'fees';const a=s=>tab===s?'active':'';
+  return `<div class="det-body">
+    <div class="det-tabs">
+      <div class="dtab ${a('fees')}" onclick="swTab('${m.id}','fees')">Fee breakdown</div>
+      <div class="dtab ${a('setup')}" onclick="swTab('${m.id}','setup')">Setup & monthly</div>
+      <div class="dtab ${a('notes')}" onclick="swTab('${m.id}','notes')">Notes</div>
+      <div class="dtab ${a('export')}" onclick="swTab('${m.id}','export')">Export config</div>
     </div>
-
-    <div class="tab-panel ${fw('fees')}">
-      <div class="fee-grid">
-        <div class="fee-box primary"><div class="fb-icon fbi-blue"><i class="ti ti-building-bank"></i></div><div class="fb-label">Payment gateway fee</div><div class="fb-value">${m.gw.pct}%</div><div class="fb-sub">+ ₹${m.gw.flat} flat per txn</div></div>
-        <div class="fee-box"><div class="fb-icon fbi-teal"><i class="ti ti-percentage"></i></div><div class="fb-label">MDR</div><div class="fb-value">${m.mdr.pct}%</div><div class="fb-sub">+ ₹${m.mdr.flat} flat per txn</div></div>
-        <div class="fee-box"><div class="fb-icon fbi-purple"><i class="ti ti-world"></i></div><div class="fb-label">International card</div><div class="fb-value">${m.intl.enabled ? m.intl.pct+'%' : '—'}</div><div class="fb-sub">${m.intl.enabled ? '+ ₹'+m.intl.flat+' flat per txn' : 'Not enabled'}</div></div>
-        <div class="fee-box"><div class="fb-icon fbi-amber"><i class="ti ti-refresh"></i></div><div class="fb-label">Refund fee</div><div class="fb-value">₹${m.refund}</div><div class="fb-sub">flat per refund</div></div>
-        <div class="fee-box"><div class="fb-icon fbi-red"><i class="ti ti-alert-triangle"></i></div><div class="fb-label">Chargeback fee</div><div class="fb-value">₹${m.chargeback}</div><div class="fb-sub">flat per dispute</div></div>
-        <div class="fee-box"><div class="fb-icon fbi-green"><i class="ti ti-currency-dollar"></i></div><div class="fb-label">FX spread</div><div class="fb-value">${m.fx==='N/A'?'—':m.fx+'%'}</div><div class="fb-sub">on currency conversion</div></div>
+    <div class="tp ${a('fees')}">
+      <div class="fgrid">
+        <div class="fbox pri"><div class="ficon fi-b"><i class="ti ti-building-bank"></i></div><div class="fl">Gateway fee</div><div class="fv">${m.gw.pct}%</div><div class="fs">+ ₹${m.gw.flat} flat/txn</div></div>
+        <div class="fbox"><div class="ficon fi-t"><i class="ti ti-percentage"></i></div><div class="fl">MDR</div><div class="fv">${m.mdr.pct}%</div><div class="fs">+ ₹${m.mdr.flat} flat/txn</div></div>
+        <div class="fbox"><div class="ficon fi-p"><i class="ti ti-world"></i></div><div class="fl">Intl card fee</div><div class="fv">${m.intl.enabled?m.intl.pct+'%':'—'}</div><div class="fs">${m.intl.enabled?'+ ₹'+m.intl.flat+' flat/txn':'Not enabled'}</div></div>
+        <div class="fbox"><div class="ficon fi-a"><i class="ti ti-refresh"></i></div><div class="fl">Refund fee</div><div class="fv">₹${m.refund}</div><div class="fs">flat per refund</div></div>
+        <div class="fbox"><div class="ficon fi-r"><i class="ti ti-alert-triangle"></i></div><div class="fl">Chargeback fee</div><div class="fv">₹${m.chargeback}</div><div class="fs">flat per dispute</div></div>
+        <div class="fbox"><div class="ficon fi-g"><i class="ti ti-currency-dollar"></i></div><div class="fl">FX spread</div><div class="fv">${m.fx==='N/A'?'—':m.fx+'%'}</div><div class="fs">on conversion</div></div>
       </div>
     </div>
-
-    <div class="tab-panel ${fw('setup')}">
-      <div class="setup-grid">
-        <div class="setup-card">
-          <div class="setup-card-icon" style="background:#eff6ff;color:#1d4ed8;"><i class="ti ti-receipt"></i></div>
-          <div class="setup-card-label">One-time setup fee</div>
-          <div class="setup-card-value">₹${Number(m.setup).toLocaleString('en-IN')}</div>
-          <div class="setup-card-sub">${Number(m.setup)===0 ? 'Waived — no upfront cost' : 'Charged once on activation'}</div>
-        </div>
-        <div class="setup-card">
-          <div class="setup-card-icon" style="background:#f0fdfa;color:#0f766e;"><i class="ti ti-calendar-repeat"></i></div>
-          <div class="setup-card-label">Monthly platform fee</div>
-          <div class="setup-card-value">₹${Number(m.monthly).toLocaleString('en-IN')}</div>
-          <div class="setup-card-sub">${Number(m.monthly)===0 ? 'No monthly charge' : 'Billed on the 1st of each month'}</div>
-        </div>
+    <div class="tp ${a('setup')}">
+      <div class="sg">
+        <div class="sc"><div class="sc-ic" style="background:#eff6ff;color:#1d4ed8;"><i class="ti ti-receipt"></i></div><div class="sc-l">One-time setup fee</div><div class="sc-v">₹${Number(m.setup).toLocaleString('en-IN')}</div><div class="sc-s">${Number(m.setup)===0?'Waived — no upfront cost':'Charged once on activation'}</div></div>
+        <div class="sc"><div class="sc-ic" style="background:#f0fdfa;color:#0f766e;"><i class="ti ti-calendar-repeat"></i></div><div class="sc-l">Monthly platform fee</div><div class="sc-v">₹${Number(m.monthly).toLocaleString('en-IN')}</div><div class="sc-s">${Number(m.monthly)===0?'No monthly charge':'Billed 1st of each month'}</div></div>
       </div>
-      <table class="setup-detail-table">
-        <thead><tr><th>Item</th><th>Amount</th><th>Frequency</th><th>Notes</th></tr></thead>
-        <tbody>
-          <tr><td>Setup fee</td><td class="${Number(m.setup)===0?'muted':'bold'}">₹${Number(m.setup).toLocaleString('en-IN')}</td><td class="muted">One-time</td><td class="muted">${Number(m.setup)===0?'Waived':'On activation'}</td></tr>
-          <tr><td>Monthly platform fee</td><td class="${Number(m.monthly)===0?'muted':'bold'}">₹${Number(m.monthly).toLocaleString('en-IN')}</td><td class="muted">Monthly</td><td class="muted">${Number(m.monthly)===0?'Not applicable':'Auto-billed'}</td></tr>
-          <tr><td>Annual total (recurring)</td><td class="blue">₹${(Number(m.monthly)*12).toLocaleString('en-IN')}</td><td class="muted">Annual</td><td class="muted">Monthly × 12</td></tr>
-        </tbody>
-      </table>
+      <table class="sdt"><thead><tr><th>Item</th><th>Amount</th><th>Frequency</th><th>Notes</th></tr></thead><tbody>
+        <tr><td>Setup fee</td><td class="${Number(m.setup)===0?'muted':'bold'}">₹${Number(m.setup).toLocaleString('en-IN')}</td><td class="muted">One-time</td><td class="muted">${Number(m.setup)===0?'Waived':'On activation'}</td></tr>
+        <tr><td>Monthly platform fee</td><td class="${Number(m.monthly)===0?'muted':'bold'}">₹${Number(m.monthly).toLocaleString('en-IN')}</td><td class="muted">Monthly</td><td class="muted">${Number(m.monthly)===0?'Not applicable':'Auto-billed'}</td></tr>
+        <tr><td>Annual recurring total</td><td class="blue">₹${(Number(m.monthly)*12).toLocaleString('en-IN')}</td><td class="muted">Annual</td><td class="muted">Monthly × 12</td></tr>
+      </tbody></table>
     </div>
-
-    <div class="tab-panel ${fw('notes')}">
-      <div class="notes-container" id="notes-${m.id}">
-        <div class="notes-toolbar">
-          <div class="notes-toolbar-left">
-            <i class="ti ti-note" style="font-size:14px;color:var(--text-muted);"></i>
-            <span class="notes-meta">Internal notes</span>
-            ${m.notes ? '<span class="notes-tag">Has notes</span>' : ''}
-          </div>
-          <button class="btn btn-ghost" style="height:28px;font-size:12px;padding:0 10px;" onclick="startEditNote('${m.id}')"><i class="ti ti-edit" style="font-size:12px;"></i> Edit</button>
-        </div>
-        <div class="notes-body ${m.notes?'':'empty'}" id="notes-body-${m.id}">${m.notes || 'No notes added yet. Click Edit to add internal notes for this merchant.'}</div>
-        <textarea class="notes-edit-area" id="notes-edit-${m.id}" placeholder="Add internal notes, custom rate justification, or reminders…">${m.notes||''}</textarea>
-        <div class="notes-footer" id="notes-footer-${m.id}">
-          <button class="btn btn-ghost" style="height:30px;font-size:12px;" onclick="cancelNote('${m.id}')">Cancel</button>
-          <button class="btn btn-primary" style="height:30px;font-size:12px;" onclick="saveNote('${m.id}')">Save note</button>
-        </div>
+    <div class="tp ${a('notes')}">
+      <div class="nc" id="nc-${m.id}">
+        <div class="ntb"><div class="ntb-l"><i class="ti ti-note" style="font-size:14px;color:var(--tm);"></i><span style="font-size:11.5px;color:var(--tm);">Internal notes</span>${m.notes?'<span class="ntag">Has notes</span>':''}</div><button class="btn btn-g" style="height:28px;font-size:12px;padding:0 10px;" onclick="editNote('${m.id}')"><i class="ti ti-edit" style="font-size:12px;"></i> Edit</button></div>
+        <div class="nbody ${m.notes?'':'empty'}" id="nb-${m.id}">${m.notes||'No notes yet. Click Edit to add internal notes.'}</div>
+        <textarea class="nea" id="ne-${m.id}" placeholder="Add notes, custom rate justification, reminders…">${m.notes||''}</textarea>
+        <div class="nft" id="nf-${m.id}"><button class="btn btn-g" style="height:30px;font-size:12px;" onclick="cancelNote('${m.id}')">Cancel</button><button class="btn btn-p" style="height:30px;font-size:12px;" onclick="saveNote('${m.id}')">Save note</button></div>
       </div>
     </div>
-
-    <div class="tab-panel ${fw('export')}">
-      <div class="export-config-panel">
-        <div style="padding:16px;">
-          <div class="export-section-title"><i class="ti ti-file-export" style="font-size:12px;margin-right:4px;"></i> Export this merchant's fee config</div>
-          <div class="export-format-grid">
-            <div class="export-format-card selected" onclick="selectInlineFormat(this,'csv-${m.id}')">
-              <div class="export-format-icon" style="color:#166534;"><i class="ti ti-file-spreadsheet"></i></div>
-              <div class="export-format-name">CSV</div>
-              <div class="export-format-desc">Excel / Sheets</div>
-            </div>
-            <div class="export-format-card" onclick="selectInlineFormat(this,'json-${m.id}')">
-              <div class="export-format-icon" style="color:#1d4ed8;"><i class="ti ti-braces"></i></div>
-              <div class="export-format-name">JSON</div>
-              <div class="export-format-desc">For API use</div>
-            </div>
-            <div class="export-format-card" onclick="selectInlineFormat(this,'pdf-${m.id}')">
-              <div class="export-format-icon" style="color:#be123c;"><i class="ti ti-file-text"></i></div>
-              <div class="export-format-name">PDF</div>
-              <div class="export-format-desc">Print / share</div>
-            </div>
-          </div>
-          <div class="export-section-title" style="margin-top:14px;"><i class="ti ti-list-check" style="font-size:12px;margin-right:4px;"></i> Fields to include</div>
-          <div class="export-fields-list">
-            <label class="export-field-row"><input type="checkbox" checked><label>Merchant ID & name</label></label>
-            <label class="export-field-row"><input type="checkbox" checked><label>Gateway fee</label></label>
-            <label class="export-field-row"><input type="checkbox" checked><label>MDR</label></label>
-            <label class="export-field-row"><input type="checkbox" checked><label>Intl card fee</label></label>
-            <label class="export-field-row"><input type="checkbox" checked><label>Refund & chargeback</label></label>
-            <label class="export-field-row"><input type="checkbox" checked><label>Setup & monthly</label></label>
-            <label class="export-field-row"><input type="checkbox"><label>FX spread</label></label>
-            <label class="export-field-row"><input type="checkbox"><label>Internal notes</label></label>
-          </div>
-          <div class="export-section-title" style="margin-top:14px;"><i class="ti ti-eye" style="font-size:12px;margin-right:4px;"></i> Preview</div>
-          <div class="export-preview-box">
-            <div class="csv-header">ID,Name,Category,Gateway%,GatewayFlat,MDR%,MDRFlat,Refund,Chargeback</div>
-            <div class="csv-row">${m.id},${m.name},${m.category},${m.gw.pct},${m.gw.flat},${m.mdr.pct},${m.mdr.flat},${m.refund},${m.chargeback}</div>
-          </div>
-          <div style="margin-top:14px;display:flex;gap:8px;">
-            <button class="btn btn-primary" style="flex:1;" onclick="exportSingleMerchant('${m.id}')"><i class="ti ti-download" style="font-size:13px;"></i> Download config</button>
-            <button class="btn btn-ghost" onclick="copyConfig('${m.id}')"><i class="ti ti-copy" style="font-size:13px;"></i> Copy</button>
-          </div>
+    <div class="tp ${a('export')}">
+      <div class="exc-panel"><div class="exc-inner">
+        <div class="exc-st" style="margin-top:0;"><i class="ti ti-file-export" style="font-size:12px;"></i> Export this merchant's fee config</div>
+        <div class="exc-fgrid">
+          <div class="efc sel" onclick="selIFmt(this)"><div class="efc-ic" style="color:#166534;"><i class="ti ti-file-spreadsheet"></i></div><div class="efc-n">CSV</div><div class="efc-d">Excel / Sheets</div></div>
+          <div class="efc" onclick="selIFmt(this)"><div class="efc-ic" style="color:#1d4ed8;"><i class="ti ti-braces"></i></div><div class="efc-n">JSON</div><div class="efc-d">API use</div></div>
+          <div class="efc" onclick="selIFmt(this)"><div class="efc-ic" style="color:#be123c;"><i class="ti ti-file-text"></i></div><div class="efc-n">PDF</div><div class="efc-d">Print / share</div></div>
         </div>
-      </div>
+        <div class="exc-st"><i class="ti ti-list-check" style="font-size:12px;"></i> Fields to include</div>
+        <div class="efl">
+          <label class="efr"><input type="checkbox" checked><label>Merchant ID & name</label></label>
+          <label class="efr"><input type="checkbox" checked><label>Gateway fee</label></label>
+          <label class="efr"><input type="checkbox" checked><label>MDR</label></label>
+          <label class="efr"><input type="checkbox" checked><label>Intl card fee</label></label>
+          <label class="efr"><input type="checkbox" checked><label>Refund & chargeback</label></label>
+          <label class="efr"><input type="checkbox" checked><label>Setup & monthly</label></label>
+          <label class="efr"><input type="checkbox"><label>FX spread</label></label>
+          <label class="efr"><input type="checkbox"><label>Internal notes</label></label>
+        </div>
+        <div class="exc-st"><i class="ti ti-eye" style="font-size:12px;"></i> Preview</div>
+        <div class="epv"><div class="eph">ID,Name,Category,GW%,GWFlat,MDR%,MDRFlat,Refund,Chargeback</div><div class="epr">${m.id},${m.name},${m.category},${m.gw.pct},${m.gw.flat},${m.mdr.pct},${m.mdr.flat},${m.refund},${m.chargeback}</div></div>
+        <div style="margin-top:14px;display:flex;gap:8px;">
+          <button class="btn btn-p" style="flex:1;" onclick="expSingle('${m.id}')"><i class="ti ti-download" style="font-size:13px;"></i> Download config</button>
+          <button class="btn btn-g" onclick="copyConf('${m.id}')"><i class="ti ti-copy" style="font-size:13px;"></i> Copy</button>
+        </div>
+      </div></div>
     </div>
-
-    <div class="detail-actions">
-      <button class="btn btn-ghost" style="color:var(--blue);border-color:#bfdbfe;background:#eff6ff;font-size:12px;height:32px;"><i class="ti ti-edit" style="font-size:12px;"></i> Edit pricing</button>
-      <button class="btn btn-ghost" style="font-size:12px;height:32px;"><i class="ti ti-file-text" style="font-size:12px;"></i> View agreement</button>
-      <button class="btn btn-ghost" style="margin-left:auto;color:#be123c;border-color:#fecdd3;background:#fff1f2;font-size:12px;height:32px;"><i class="ti ti-trash" style="font-size:12px;"></i> Remove</button>
+    <div class="det-actions">
+      <button class="btn btn-g" style="color:var(--blue);border-color:#bfdbfe;background:#eff6ff;font-size:12px;height:32px;"><i class="ti ti-edit" style="font-size:12px;"></i> Edit pricing</button>
+      <button class="btn btn-g" style="font-size:12px;height:32px;" onclick="goInvForMerchant('${m.name}')"><i class="ti ti-file-invoice" style="font-size:12px;"></i> View invoices</button>
+      <button class="btn btn-g" style="font-size:12px;height:32px;"><i class="ti ti-file-text" style="font-size:12px;"></i> View agreement</button>
+      <button class="btn btn-danger" style="margin-left:auto;font-size:12px;height:32px;"><i class="ti ti-trash" style="font-size:12px;"></i> Remove</button>
     </div>
   </div>`;
 }
 
-function rowHTML(m) {
-  return `
-  <tr class="m-row${openId===m.id?' is-open':''}" data-id="${m.id}" onclick="toggleRow('${m.id}')">
-    <td style="padding-left:14px;"><i class="ti ti-building-store" style="font-size:15px;color:#cbd5e1;"></i></td>
-    <td><div class="m-name-cell"><div class="m-avatar ${m.av}">${m.initials}</div><div><div class="m-name">${m.name}</div><div class="m-id">${m.id}</div></div></div></td>
-    <td style="font-size:12px;color:var(--text-secondary);">${m.category}</td>
-    <td><span class="chip chip-blue">${m.gw.pct}% + ₹${m.gw.flat}</span></td>
-    <td><span class="chip chip-blue">${m.mdr.pct}%</span></td>
-    <td>${intlHTML(m)}</td>
-    <td>${statusHTML(m.status)}</td>
-    <td><button class="expand-btn${openId===m.id?' open':''}"><i class="ti ti-chevron-down"></i></button></td>
+function rowHTML(m){
+  return `<tr class="mr${openId===m.id?' open':''}" onclick="togRow('${m.id}')">
+    <td style="padding-left:16px;"><i class="ti ti-building-store" style="font-size:15px;color:#cbd5e1;"></i></td>
+    <td><div class="mn">${m.name}</div><div class="mid">${m.id}</div></td>
+    <td style="font-size:12px;color:var(--ts);">${m.category}</td>
+    <td><span class="chip chip-b">${m.gw.pct}% + ₹${m.gw.flat}</span></td>
+    <td><span class="chip chip-b">${m.mdr.pct}%</span></td>
+    <td>${intlBadge(m)}</td>
+    <td>${statBadge(m.status)}</td>
+    <td><button class="xbtn${openId===m.id?' open':''}"><i class="ti ti-chevron-down"></i></button></td>
   </tr>
-  <tr class="detail-row${openId===m.id?' visible':''}" data-detail="${m.id}">
-    <td colspan="8">${detailHTML(m)}</td>
-  </tr>`;
+  <tr class="dr${openId===m.id?' visible':''}"><td colspan="8">${detHTML(m)}</td></tr>`;
 }
 
-function render(list) {
-  const tbody = document.getElementById('tableBody');
-  document.getElementById('merchantCount').textContent = list.length + ' merchant' + (list.length!==1?'s':'');
-  if (!list.length) { tbody.innerHTML = `<tr class="empty-row"><td colspan="8"><div class="empty-inner"><i class="ti ti-search"></i><p>No merchants match your filters</p></div></td></tr>`; return; }
-  tbody.innerHTML = list.map(rowHTML).join('');
+function renderPricing(list){
+  const b=document.getElementById('pBody');
+  document.getElementById('pCount').textContent=list.length+' merchant'+(list.length!==1?'s':'');
+  if(!list.length){b.innerHTML=`<tr class="empty-row"><td colspan="8"><div class="empty-in"><i class="ti ti-search"></i><p>No merchants match your filters</p></div></td></tr>`;return;}
+  b.innerHTML=list.map(rowHTML).join('');
 }
-
-function toggleRow(id) { openId = openId===id ? null : id; applyFilters(); }
-function switchTab(id, tab) { openTab[id] = tab; applyFilters(); }
-
-function applyFilters() {
-  const q = document.getElementById('searchInput').value.toLowerCase().trim();
-  const st = document.getElementById('statusFilter').value;
-  const il = document.getElementById('intlFilter').value;
-  render(DATA.filter(m => {
-    if (q && !m.name.toLowerCase().includes(q) && !m.id.toLowerCase().includes(q) && !m.category.toLowerCase().includes(q)) return false;
-    if (st && m.status!==st) return false;
-    if (il==='yes' && !m.intl.enabled) return false;
-    if (il==='no' && m.intl.enabled) return false;
+function togRow(id){openId=openId===id?null:id;applyFilters();}
+function swTab(id,tab){openTab[id]=tab;applyFilters();}
+function applyFilters(){
+  const q=document.getElementById('pSearch').value.toLowerCase().trim();
+  const st=document.getElementById('pStatus').value;
+  const il=document.getElementById('pIntl').value;
+  renderPricing(MERCHANTS.filter(m=>{
+    if(q&&!m.name.toLowerCase().includes(q)&&!m.id.toLowerCase().includes(q)&&!m.category.toLowerCase().includes(q))return false;
+    if(st&&m.status!==st)return false;
+    if(il==='yes'&&!m.intl.enabled)return false;
+    if(il==='no'&&m.intl.enabled)return false;
     return true;
   }));
 }
 
-/* Notes */
-function startEditNote(id) {
-  document.getElementById('notes-body-'+id).style.display='none';
-  document.getElementById('notes-edit-'+id).classList.add('active');
-  document.getElementById('notes-footer-'+id).classList.add('active');
-  document.getElementById('notes-edit-'+id).focus();
+/* notes */
+function editNote(id){document.getElementById('nb-'+id).style.display='none';document.getElementById('ne-'+id).classList.add('active');document.getElementById('nf-'+id).classList.add('active');document.getElementById('ne-'+id).focus();}
+function cancelNote(id){const m=MERCHANTS.find(x=>x.id===id);document.getElementById('ne-'+id).value=m.notes||'';document.getElementById('nb-'+id).style.display='';document.getElementById('ne-'+id).classList.remove('active');document.getElementById('nf-'+id).classList.remove('active');}
+function saveNote(id){const m=MERCHANTS.find(x=>x.id===id);m.notes=document.getElementById('ne-'+id).value.trim();swTab(id,'notes');applyFilters();}
+
+/* export inline */
+function selIFmt(el){el.closest('.exc-fgrid').querySelectorAll('.efc').forEach(c=>c.classList.remove('sel'));el.classList.add('sel');}
+function expSingle(id){const m=MERCHANTS.find(x=>x.id===id);const csv='ID,Name,Category,GW%,GWFlat,MDR%,MDRFlat,Refund,Chargeback,Setup,Monthly,FX\n'+[m.id,m.name,m.category,m.gw.pct,m.gw.flat,m.mdr.pct,m.mdr.flat,m.refund,m.chargeback,m.setup,m.monthly,m.fx].join(',');const a=document.createElement('a');a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);a.download=m.name.replace(/\s+/g,'_')+'_pricing.csv';a.click();}
+function copyConf(id){const m=MERCHANTS.find(x=>x.id===id);const txt=JSON.stringify({id:m.id,name:m.name,category:m.category,gw:m.gw,mdr:m.mdr,intl:m.intl,refund:m.refund,chargeback:m.chargeback,setup:m.setup,monthly:m.monthly,fx:m.fx},null,2);navigator.clipboard.writeText(txt).then(()=>alert('Config copied!'));}
+
+/* ═══════════════════════════════════════════════
+   GST INVOICE PAGE
+═══════════════════════════════════════════════ */
+function gstStatBadge(s){const m={paid:['s-paid','Paid'],draft:['s-draft','Draft'],overdue:['s-over','Overdue'],pending:['s-pen','Pending']};const[c,l]=m[s]||['s-ina','—'];return`<span class="stat ${c}"><span class="sdot"></span>${l}</span>`;}
+function fmt(n){return'₹'+n.toLocaleString('en-IN',{minimumFractionDigits:2,maximumFractionDigits:2});}
+
+function renderGst(list){
+  const b=document.getElementById('gBody');
+  document.getElementById('gCount').textContent=list.length+' invoice'+(list.length!==1?'s':'');
+  if(!list.length){b.innerHTML=`<tr class="empty-row"><td colspan="9"><div class="empty-in"><i class="ti ti-search"></i><p>No invoices match your filters</p></div></td></tr>`;return;}
+  b.innerHTML=list.map(inv=>`
+    <tr class="mr" onclick="openInvDetail('${inv.no}')">
+      <td><span style="font-size:13px;font-weight:600;color:var(--blue);cursor:pointer;">${inv.no}</span></td>
+      <td><div style="font-size:13px;font-weight:500;color:var(--tp);">${inv.merchant}</div></td>
+      <td style="font-size:12px;color:var(--ts);">${inv.month}</td>
+      <td style="font-weight:500;">${fmt(inv.taxable)}</td>
+      <td style="color:var(--ts);font-size:12.5px;">${fmt(inv.cgst)}</td>
+      <td style="color:var(--ts);font-size:12.5px;">${fmt(inv.sgst)}</td>
+      <td style="font-weight:700;color:var(--tp);">${fmt(inv.total)}</td>
+      <td>${gstStatBadge(inv.status)}</td>
+      <td><button class="xbtn" onclick="event.stopPropagation();openInvDetail('${inv.no}')"><i class="ti ti-eye" style="font-size:13px;"></i></button></td>
+    </tr>`).join('');
 }
-function cancelNote(id) {
-  const m = DATA.find(x=>x.id===id);
-  document.getElementById('notes-edit-'+id).value = m.notes||'';
-  document.getElementById('notes-body-'+id).style.display='';
-  document.getElementById('notes-edit-'+id).classList.remove('active');
-  document.getElementById('notes-footer-'+id).classList.remove('active');
+function applyGstFilters(){
+  const q=document.getElementById('gSearch').value.toLowerCase().trim();
+  const mc=document.getElementById('gMerchant').value;
+  const st=document.getElementById('gStatus').value;
+  const pd=document.getElementById('gPeriod').value;
+  renderGst(INVOICES.filter(i=>{
+    if(q&&!i.no.toLowerCase().includes(q)&&!i.merchant.toLowerCase().includes(q))return false;
+    if(mc&&i.merchant!==mc)return false;
+    if(st&&i.status!==st)return false;
+    if(pd&&i.period!==pd)return false;
+    return true;
+  }));
 }
-function saveNote(id) {
-  const m = DATA.find(x=>x.id===id);
-  const val = document.getElementById('notes-edit-'+id).value.trim();
-  m.notes = val;
-  switchTab(id, 'notes');
-  applyFilters();
+function showGstList(){document.getElementById('gst-list-view').style.display='';document.getElementById('gst-gen-view').style.display='none';document.getElementById('gst-detail-view').style.display='none';applyGstFilters();}
+function openInvGenerator(){document.getElementById('gst-list-view').style.display='none';document.getElementById('gst-gen-view').style.display='';document.getElementById('gst-detail-view').style.display='none';}
+function closeInvGenerator(){showGstList();}
+
+function goInvForMerchant(name){
+  goPage('gst');
+  setTimeout(()=>{document.getElementById('gMerchant').value=name;applyGstFilters();},50);
 }
 
-/* Export inline */
-function selectInlineFormat(el, key) {
-  el.closest('.export-format-grid').querySelectorAll('.export-format-card').forEach(c=>c.classList.remove('selected'));
-  el.classList.add('selected');
-}
-function exportSingleMerchant(id) {
-  const m = DATA.find(x=>x.id===id);
-  const csv = 'ID,Name,Category,Gateway%,GatewayFlat,MDR%,MDRFlat,IntlEnabled,IntlPct,Refund,Chargeback,Setup,Monthly,FX,Status\n' +
-    [m.id,m.name,m.category,m.gw.pct,m.gw.flat,m.mdr.pct,m.mdr.flat,m.intl.enabled,m.intl.pct,m.refund,m.chargeback,m.setup,m.monthly,m.fx,m.status].join(',');
-  const a = document.createElement('a');
-  a.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
-  a.download = m.name.replace(/\s+/g,'_')+'_pricing.csv'; a.click();
-}
-function copyConfig(id) {
-  const m = DATA.find(x=>x.id===id);
-  const txt = JSON.stringify({id:m.id,name:m.name,category:m.category,gw:m.gw,mdr:m.mdr,intl:m.intl,refund:m.refund,chargeback:m.chargeback,setup:m.setup,monthly:m.monthly,fx:m.fx},null,2);
-  navigator.clipboard.writeText(txt).then(()=>alert('Config copied to clipboard!'));
+/* invoice generator logic */
+function pullFeeConfig(){
+  const name=document.getElementById('gen-merchant').value;
+  const m=MERCHANTS.find(x=>x.name===name);
+  const disp=document.getElementById('gen-fee-display');
+  if(!m){disp.innerHTML='<span style="color:var(--tm);font-style:italic;">Select a merchant to pull their fee configuration</span>';recalcInvoice();return;}
+  disp.innerHTML=`
+    <div style="display:flex;flex-direction:column;gap:0;">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);"><span style="font-size:12.5px;color:var(--ts);">Gateway fee</span><span style="font-size:13px;font-weight:600;color:var(--tp);">${m.gw.pct}% + ₹${m.gw.flat}/txn</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);"><span style="font-size:12.5px;color:var(--ts);">MDR</span><span style="font-size:13px;font-weight:600;color:var(--tp);">${m.mdr.pct}% + ₹${m.mdr.flat}/txn</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);"><span style="font-size:12.5px;color:var(--ts);">Refund fee</span><span style="font-size:13px;font-weight:600;color:var(--tp);">₹${m.refund} per refund</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;"><span style="font-size:12.5px;color:var(--ts);">Chargeback fee</span><span style="font-size:13px;font-weight:600;color:var(--tp);">₹${m.chargeback} per dispute</span></div>
+    </div>`;
+  recalcInvoice();
 }
 
-/* Export drawer */
-function openExportDrawer() { document.getElementById('exportOverlay').classList.add('open'); document.body.style.overflow='hidden'; }
-function selectExportFormat(fmt) {
-  ['csv','json','pdf'].forEach(f=>{ const el=document.getElementById('ef-'+f); if(el){el.classList.remove('selected');el.querySelector('.eoc-check').innerHTML='';} });
-  const el=document.getElementById('ef-'+fmt); if(el){el.classList.add('selected');el.querySelector('.eoc-check').innerHTML='<i class="ti ti-check" style="font-size:10px;"></i>';}
-}
-function selectScope(s) {
-  ['all','active'].forEach(k=>{ const el=document.getElementById('es-'+k); if(el)el.classList.remove('selected'); });
-  const el=document.getElementById('es-'+s); if(el)el.classList.add('selected');
-}
-function doExport() {
-  const headers = ['ID','Name','Category','Gateway%','GatewayFlat','MDR%','MDRFlat','IntlEnabled','IntlPct','Refund','Chargeback','Setup','Monthly','FX','Status'];
-  const rows = DATA.map(m=>[m.id,m.name,m.category,m.gw.pct,m.gw.flat,m.mdr.pct,m.mdr.flat,m.intl.enabled,m.intl.pct,m.refund,m.chargeback,m.setup,m.monthly,m.fx,m.status]);
-  const csv = [headers,...rows].map(r=>r.join(',')).join('\n');
-  const a = document.createElement('a'); a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv); a.download='merchant_pricing.csv'; a.click();
-  closeOverlay('exportOverlay');
-}
+function recalcInvoice(){
+  const name=document.getElementById('gen-merchant').value;
+  const m=MERCHANTS.find(x=>x.name===name);
+  const vol=parseFloat(document.getElementById('gen-vol').value)||0;
+  const txns=parseInt(document.getElementById('gen-txns').value)||0;
+  const refvol=parseFloat(document.getElementById('gen-refvol').value)||0;
+  const cbs=parseInt(document.getElementById('gen-cbs').value)||0;
+  const pv=document.getElementById('gen-preview');
 
-/* Add merchant drawer */
-let currentStep = 1;
-const TOTAL_STEPS = 4;
-
-function openAddDrawer() {
-  currentStep = 1; resetForm(); updateStepUI();
-  document.getElementById('addOverlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-function closeOverlay(id) {
-  document.getElementById(id).classList.remove('open');
-  document.body.style.overflow = '';
-}
-function handleOverlayClick(e, id) { if(e.target===document.getElementById(id)) closeOverlay(id); }
-
-function resetForm() {
-  ['f-name','f-id','f-gw-pct','f-gw-flat','f-mdr-pct','f-mdr-flat','f-intl-pct','f-intl-flat','f-fx','f-refund','f-chargeback','f-setup','f-monthly','f-notes'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
-  const cat=document.getElementById('f-category'); if(cat)cat.value='';
-  const st=document.getElementById('f-status'); if(st)st.value='active';
-  const tog=document.getElementById('f-intl-toggle'); if(tog){tog.checked=false;toggleIntlFields();}
-  const conf=document.getElementById('f-confirm'); if(conf)conf.checked=false;
-}
-function toggleIntlFields() {
-  const on=document.getElementById('f-intl-toggle').checked;
-  const sec=document.getElementById('intl-fee-section'); if(sec)sec.style.display=on?'block':'none';
-}
-function v(id){return(document.getElementById(id)||{}).value||'';}
-
-function updateStepUI() {
-  for(let i=1;i<=TOTAL_STEPS;i++){
-    const p=document.getElementById('step-'+i); if(p)p.style.display=i===currentStep?'block':'none';
-    const n=document.getElementById('snum-'+i), l=document.getElementById('slbl-'+i); if(!n||!l)continue;
-    n.className='step-num'; l.className='step-label';
-    if(i<currentStep){n.className+=' done';l.className+=' done';n.innerHTML='<i class="ti ti-check" style="font-size:10px;"></i>';}
-    else if(i===currentStep){n.className+=' active';l.className+=' active';n.textContent=i;}
-    else{n.textContent=i;}
-    const c=document.getElementById('scon-'+i); if(c)c.className='step-connector'+(i<currentStep?' done':'');
+  if(!m||(!vol&&!txns)){
+    pv.innerHTML='<div style="color:var(--tm);font-style:italic;font-size:13px;text-align:center;padding:20px 0;">Enter transaction volume to see invoice preview</div>';
+    return;
   }
-  document.getElementById('stepIndicator').textContent='Step '+currentStep+' of '+TOTAL_STEPS;
-  document.getElementById('btnBack').style.display=currentStep>1?'inline-flex':'none';
-  const bn=document.getElementById('btnNext');
-  bn.textContent=currentStep===TOTAL_STEPS?'Save merchant':'Continue';
-  bn.style.background=currentStep===TOTAL_STEPS?'#166534':'';
-  if(currentStep===TOTAL_STEPS)buildReview();
+  const gwFee=vol*(parseFloat(m.gw.pct)/100)+(txns*parseFloat(m.gw.flat));
+  const mdrFee=vol*(parseFloat(m.mdr.pct)/100)+(txns*parseFloat(m.mdr.flat));
+  const refFee=cbs*parseFloat(m.chargeback);
+  const taxable=gwFee+mdrFee+refFee;
+  const cgst=taxable*0.09; const sgst=taxable*0.09;
+  const total=taxable+cgst+sgst;
+
+  pv.innerHTML=`
+    <div style="margin-bottom:14px;">
+      ${row2('Transaction volume',fmt(vol))}
+      ${row2('Transactions',txns.toLocaleString('en-IN'))}
+      <div style="border-top:1px dashed var(--border);margin:10px 0;"></div>
+      ${row2('Gateway fee ('+m.gw.pct+'%)',fmt(gwFee),'var(--tp)','600')}
+      ${row2('MDR ('+m.mdr.pct+'%)',fmt(mdrFee),'var(--tp)','600')}
+      ${cbs>0?row2('Chargeback fees ('+cbs+'×)',fmt(refFee),'var(--tp)','600'):''}
+      <div style="border-top:1px solid var(--border);margin:10px 0;"></div>
+      ${row2('Taxable amount',fmt(taxable),'var(--tp)','700')}
+      ${row2('CGST @ 9%',fmt(cgst),'#64748b','400')}
+      ${row2('SGST @ 9%',fmt(sgst),'#64748b','400')}
+      <div style="border-top:2px solid var(--border);margin:10px 0;"></div>
+      ${row2('Total payable',fmt(total),'var(--blue)','700','16px')}
+    </div>`;
+}
+function row2(l,v,vc='var(--ts)',fw='400',fs='13px'){return`<div style="display:flex;justify-content:space-between;align-items:center;padding:4px 0;"><span style="font-size:12.5px;color:var(--ts);">${l}</span><span style="font-size:${fs};font-weight:${fw};color:${vc};">${v}</span></div>`;}
+
+function createInvoice(){
+  const name=document.getElementById('gen-merchant').value;
+  if(!name){alert('Please select a merchant.');return;}
+  alert('Invoice created and added to the invoice list! (In production this would generate a PDF and save to the database.)');
+  showGstList();
+}
+function saveDraft(){alert('Draft saved!');showGstList();}
+
+/* invoice detail view */
+function openInvDetail(no){
+  const inv=INVOICES.find(i=>i.no===no);
+  if(!inv)return;
+  const m=MERCHANTS.find(x=>x.name===inv.merchant)||{};
+  document.getElementById('gst-list-view').style.display='none';
+  document.getElementById('gst-gen-view').style.display='none';
+  document.getElementById('gst-detail-view').style.display='';
+  document.getElementById('inv-detail-status').innerHTML=gstStatBadge(inv.status);
+  document.getElementById('inv-doc-render').innerHTML=buildInvDoc(inv,m);
+}
+function closeInvDetail(){showGstList();}
+
+function buildInvDoc(inv,m){
+  const words=n=>{ const a=['','One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten','Eleven','Twelve','Thirteen','Fourteen','Fifteen','Sixteen','Seventeen','Eighteen','Nineteen'];const b=['','','Twenty','Thirty','Forty','Fifty','Sixty','Seventy','Eighty','Ninety'];function conv(n){if(n<20)return a[n];if(n<100)return b[Math.floor(n/10)]+(n%10?' '+a[n%10]:'');if(n<1000)return a[Math.floor(n/100)]+' Hundred'+(n%100?' '+conv(n%100):'');if(n<100000)return conv(Math.floor(n/1000))+' Thousand'+(n%1000?' '+conv(n%1000):'');if(n<10000000)return conv(Math.floor(n/100000))+' Lakh'+(n%100000?' '+conv(n%100000):'');return conv(Math.floor(n/10000000))+' Crore'+(n%10000000?' '+conv(n%10000000):'');}return conv(Math.round(inv.total))+' Rupees Only';};
+  return `
+  <div class="inv-doc-header">
+    <div class="inv-from">
+      <div class="inv-brand">PayGlocal Technologies</div>
+      <div class="inv-brand-sub">Partner Program</div>
+      <address>42, Koramangala 5th Block, Bengaluru 560095<br>Karnataka, India<br>GSTIN: 29AABCP1234K1Z7 &nbsp;|&nbsp; PAN: AABCP1234K</address>
+    </div>
+    <div class="inv-meta">
+      <div class="inv-title-badge">Tax Invoice</div>
+      <table><tbody>
+        <tr><td>Invoice no.</td><td><strong>${inv.no}</strong></td></tr>
+        <tr><td>Date</td><td><strong>01 ${inv.month}</strong></td></tr>
+        <tr><td>Due date</td><td><strong>${inv.due}</strong></td></tr>
+        <tr><td>Period</td><td><strong>${inv.month}</strong></td></tr>
+        <tr><td>Place of supply</td><td><strong>Karnataka (29)</strong></td></tr>
+      </tbody></table>
+    </div>
+  </div>
+  <div class="inv-parties">
+    <div class="inv-party">
+      <div class="inv-party-label">Billed by</div>
+      <h3>PayGlocal Technologies Pvt Ltd</h3>
+      <address>42, Koramangala 5th Block<br>Bengaluru 560095, Karnataka</address>
+      <div class="gstin">GSTIN: 29AABCP1234K1Z7</div>
+    </div>
+    <div class="inv-party">
+      <div class="inv-party-label">Billed to</div>
+      <h3>${inv.merchant}</h3>
+      <address>${m.category||'—'}<br>India</address>
+      ${m.gstin?`<div class="gstin">GSTIN: ${m.gstin}</div>`:'<div class="gstin" style="color:var(--tm);">GSTIN: Not provided</div>'}
+    </div>
+  </div>
+  <div class="inv-items">
+    <table class="inv-tbl">
+      <thead><tr><th>#</th><th>Description</th><th>SAC</th><th>Taxable (₹)</th><th>CGST 9%</th><th>SGST 9%</th><th>Amount (₹)</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td><strong>Payment Gateway Services</strong><br><span style="font-size:11.5px;color:var(--ts);">Transaction processing fees for ${inv.month}</span></td><td style="font-size:12px;color:var(--ts);">997158</td><td>${fmt(inv.taxable*0.70)}</td><td>${fmt(inv.taxable*0.70*0.09)}</td><td>${fmt(inv.taxable*0.70*0.09)}</td><td>${fmt(inv.taxable*0.70*1.18)}</td></tr>
+        <tr><td>2</td><td><strong>MDR — Merchant Discount Rate</strong><br><span style="font-size:11.5px;color:var(--ts);">Applied on net transaction volume</span></td><td style="font-size:12px;color:var(--ts);">997158</td><td>${fmt(inv.taxable*0.25)}</td><td>${fmt(inv.taxable*0.25*0.09)}</td><td>${fmt(inv.taxable*0.25*0.09)}</td><td>${fmt(inv.taxable*0.25*1.18)}</td></tr>
+        <tr><td>3</td><td><strong>Chargeback & Refund Processing</strong><br><span style="font-size:11.5px;color:var(--ts);">Dispute handling fees</span></td><td style="font-size:12px;color:var(--ts);">997158</td><td>${fmt(inv.taxable*0.05)}</td><td>${fmt(inv.taxable*0.05*0.09)}</td><td>${fmt(inv.taxable*0.05*0.09)}</td><td>${fmt(inv.taxable*0.05*1.18)}</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="inv-totals">
+    <div class="inv-tot-grid">
+      <div class="inv-tot-left">
+        <div style="font-size:11px;font-weight:600;color:var(--tm);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;">Amount in words</div>
+        <div style="font-size:13px;color:var(--tp);font-style:italic;line-height:1.6;">${words(inv.total)}</div>
+        <div style="font-size:11.5px;color:var(--tm);margin-top:10px;">HSN/SAC: 997158 — Information technology and computer services</div>
+      </div>
+      <div style="padding-left:32px;">
+        <div class="inv-tot-row"><span class="l">Subtotal (taxable)</span><span class="v">${fmt(inv.taxable)}</span></div>
+        <div class="inv-tot-row"><span class="l">CGST @ 9%</span><span class="v">${fmt(inv.cgst)}</span></div>
+        <div class="inv-tot-row"><span class="l">SGST @ 9%</span><span class="v">${fmt(inv.sgst)}</span></div>
+        <div class="inv-tot-row"><span class="l">IGST @ 0%</span><span class="v">—</span></div>
+        <div class="inv-tot-row grand"><span class="l">Total payable</span><span class="v">${fmt(inv.total)}</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="inv-bank">
+    <div class="inv-bank-label">Bank details for payment</div>
+    <div class="inv-bank-grid">
+      <div class="inv-bank-item"><div class="k">Bank name</div><div class="v">HDFC Bank</div></div>
+      <div class="inv-bank-item"><div class="k">Account number</div><div class="v">50200123456789</div></div>
+      <div class="inv-bank-item"><div class="k">IFSC code</div><div class="v">HDFC0001234</div></div>
+      <div class="inv-bank-item"><div class="k">Account type</div><div class="v">Current</div></div>
+    </div>
+  </div>
+  <div class="inv-footer">
+    <div class="inv-footer-note">This is a computer-generated invoice and does not require a physical signature.<br>For queries: billing@payglocal.in</div>
+    <div class="inv-sig"><div class="sig-line"></div><div class="sig-label">Authorised signatory — PayGlocal Technologies</div></div>
+  </div>`;
 }
 
-function buildReview() {
-  const intlOn=document.getElementById('f-intl-toggle').checked;
-  const rows=[['Merchant name',v('f-name')||'—'],['Category',v('f-category')||'—'],['Status',v('f-status')||'active'],['Gateway fee',(v('f-gw-pct')||'—')+'% + ₹'+(v('f-gw-flat')||'—')],['MDR',(v('f-mdr-pct')||'—')+'% + ₹'+(v('f-mdr-flat')||'—')],['Intl cards',intlOn?(v('f-intl-pct')||'—')+'% + ₹'+(v('f-intl-flat')||'—'):'Not enabled'],['FX spread',intlOn?(v('f-fx')||'—')+'%':'N/A'],['Refund fee','₹'+(v('f-refund')||'—')],['Chargeback fee','₹'+(v('f-chargeback')||'—')],['Setup fee','₹'+(v('f-setup')||'0')],['Monthly fee','₹'+(v('f-monthly')||'0')]];
-  document.getElementById('reviewPreview').innerHTML='<div class="fee-preview-title"><i class="ti ti-clipboard-check" style="font-size:11px;margin-right:4px;"></i>Summary — review before saving</div>'+rows.map(([l,val])=>`<div class="fee-preview-row"><span class="fpr-label">${l}</span><span class="fpr-val">${val}</span></div>`).join('');
+/* ═══════════════════════════════════════════════
+   ADD MERCHANT DRAWER
+═══════════════════════════════════════════════ */
+let cStep=1; const TSTEPS=4;
+function openAddDrawer(){cStep=1;resetF();updStep();document.getElementById('addOverlay').classList.add('open');document.body.style.overflow='hidden';}
+function co(id){document.getElementById(id).classList.remove('open');document.body.style.overflow='';}
+function hoc(e,id){if(e.target===document.getElementById(id))co(id);}
+function resetF(){
+  ['f-name','f-mid','f-gw-p','f-gw-f','f-mdr-p','f-mdr-f','f-ip','f-if','f-fx','f-ref','f-cb','f-su','f-mo','f-notes'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  const c=document.getElementById('f-cat');if(c)c.value='';
+  const s=document.getElementById('f-st');if(s)s.value='active';
+  const t=document.getElementById('f-intl');if(t){t.checked=false;togIntl();}
+  const cf=document.getElementById('f-conf');if(cf)cf.checked=false;
 }
-
-function validateStep(s){
-  if(s===1){if(!v('f-name').trim()){alert('Please enter a merchant name.');return false;}if(!v('f-category')){alert('Please select a business category.');return false;}}
-  if(s===2){if(!v('f-gw-pct')){alert('Please enter the gateway fee %.');return false;}if(!v('f-gw-flat')){alert('Please enter the gateway flat fee.');return false;}if(!v('f-mdr-pct')){alert('Please enter the MDR %.');return false;}}
+function togIntl(){const on=document.getElementById('f-intl').checked;const s=document.getElementById('intl-sec');if(s)s.style.display=on?'block':'none';}
+function gv(id){return(document.getElementById(id)||{}).value||'';}
+function updStep(){
+  for(let i=1;i<=TSTEPS;i++){
+    const p=document.getElementById('step-'+i);if(p)p.style.display=i===cStep?'block':'none';
+    const n=document.getElementById('sn'+i),l=document.getElementById('sl'+i);if(!n||!l)continue;
+    n.className='sn';l.className='sl';
+    if(i<cStep){n.className+=' done';l.className+=' done';n.innerHTML='<i class="ti ti-check" style="font-size:10px;"></i>';}
+    else if(i===cStep){n.className+=' active';l.className+=' active';n.textContent=i;}
+    else n.textContent=i;
+    const c=document.getElementById('sc'+i);if(c)c.className='sc-conn'+(i<cStep?' done':'');
+  }
+  document.getElementById('sind').textContent='Step '+cStep+' of '+TSTEPS;
+  document.getElementById('bBack').style.display=cStep>1?'inline-flex':'none';
+  const bn=document.getElementById('bNext');bn.textContent=cStep===TSTEPS?'Save merchant':'Continue';
+  bn.style.background=cStep===TSTEPS?'#166534':'';
+  if(cStep===TSTEPS)buildRev();
+}
+function buildRev(){
+  const io=document.getElementById('f-intl').checked;
+  const rows=[['Merchant name',gv('f-name')||'—'],['Category',gv('f-cat')||'—'],['Status',gv('f-st')||'active'],['Gateway fee',gv('f-gw-p')+'% + ₹'+gv('f-gw-f')],['MDR',gv('f-mdr-p')+'% + ₹'+gv('f-mdr-f')],['Intl cards',io?gv('f-ip')+'% + ₹'+gv('f-if'):'Not enabled'],['FX spread',io?gv('f-fx')+'%':'N/A'],['Refund fee','₹'+gv('f-ref')],['Chargeback fee','₹'+gv('f-cb')],['Setup fee','₹'+gv('f-su')],['Monthly fee','₹'+gv('f-mo')]];
+  document.getElementById('fprev').innerHTML='<div class="fprev-t"><i class="ti ti-clipboard-check" style="font-size:11px;margin-right:4px;"></i>Summary — review before saving</div>'+rows.map(([l,v])=>`<div class="fprev-r"><span class="fpr-l">${l}</span><span class="fpr-v">${v}</span></div>`).join('');
+}
+function valStep(s){
+  if(s===1){if(!gv('f-name').trim()){alert('Enter merchant name.');return false;}if(!gv('f-cat')){alert('Select category.');return false;}}
+  if(s===2){if(!gv('f-gw-p')){alert('Enter gateway fee %.');return false;}if(!gv('f-gw-f')){alert('Enter gateway flat fee.');return false;}if(!gv('f-mdr-p')){alert('Enter MDR %.');return false;}}
   return true;
 }
-function drawerNext(){
-  if(currentStep===TOTAL_STEPS){if(!document.getElementById('f-confirm').checked){alert('Please confirm the fee configuration.');return;}saveAndShowSuccess();return;}
-  if(!validateStep(currentStep))return;
-  currentStep++; updateStepUI(); document.getElementById('addDrawerBody').scrollTop=0;
+function dNext(){
+  if(cStep===TSTEPS){if(!document.getElementById('f-conf').checked){alert('Please confirm the fee configuration.');return;}saveM();return;}
+  if(!valStep(cStep))return;
+  cStep++;updStep();document.getElementById('adb').scrollTop=0;
 }
-function drawerPrev(){if(currentStep>1){currentStep--;updateStepUI();document.getElementById('addDrawerBody').scrollTop=0;}}
-
-function saveAndShowSuccess(){
-  const name=v('f-name').trim();
-  const initials=name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);
-  const avC=['av-b','av-t','av-p','av-a','av-g'];
-  const cid=v('f-id').trim()||'MRC-'+new Date().getFullYear()+'-'+initials+'-'+String(DATA.length+1).padStart(3,'0');
-  const intlOn=document.getElementById('f-intl-toggle').checked;
-  DATA.push({id:cid,name,initials,av:avC[DATA.length%avC.length],category:v('f-category'),status:v('f-status'),gw:{pct:v('f-gw-pct')||'0',flat:v('f-gw-flat')||'0'},mdr:{pct:v('f-mdr-pct')||'0',flat:v('f-mdr-flat')||'0'},intl:{enabled:intlOn,pct:v('f-intl-pct')||'—',flat:v('f-intl-flat')||'—'},refund:v('f-refund')||'0',chargeback:v('f-chargeback')||'0',setup:v('f-setup')||'0',monthly:v('f-monthly')||'0',fx:intlOn?(v('f-fx')||'0'):'N/A',notes:v('f-notes')});
-  document.getElementById('addDrawerBody').innerHTML=`<div class="drawer-success visible"><div class="success-icon"><i class="ti ti-check"></i></div><div class="success-title">Merchant pricing saved</div><div class="success-sub">Fee configuration for <strong>${name}</strong> has been applied.</div><div class="success-id">Merchant ID: <span>${cid}</span></div><button class="btn btn-primary" style="margin-top:22px;" onclick="closeOverlay('addOverlay')">Back to pricing</button></div>`;
-  document.getElementById('drawerSteps').style.display='none';
-  document.getElementById('addDrawerFooter').style.display='none';
+function dPrev(){if(cStep>1){cStep--;updStep();document.getElementById('adb').scrollTop=0;}}
+function saveM(){
+  const name=gv('f-name').trim();const ini=name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);
+  const avs=['av-b','av-t','av-p','av-a','av-g'];
+  const cid=gv('f-mid').trim()||'MRC-'+new Date().getFullYear()+'-'+ini+'-'+String(MERCHANTS.length+1).padStart(3,'0');
+  const io=document.getElementById('f-intl').checked;
+  MERCHANTS.push({id:cid,name,initials:ini,av:avs[MERCHANTS.length%avs.length],category:gv('f-cat'),status:gv('f-st'),gstin:'',gw:{pct:gv('f-gw-p')||'0',flat:gv('f-gw-f')||'0'},mdr:{pct:gv('f-mdr-p')||'0',flat:gv('f-mdr-f')||'0'},intl:{enabled:io,pct:gv('f-ip')||'—',flat:gv('f-if')||'—'},refund:gv('f-ref')||'0',chargeback:gv('f-cb')||'0',setup:gv('f-su')||'0',monthly:gv('f-mo')||'0',fx:io?(gv('f-fx')||'0'):'N/A',notes:gv('f-notes')});
+  document.getElementById('adb').innerHTML=`<div class="succ vis"><div class="succ-ic"><i class="ti ti-check"></i></div><div class="succ-t">Merchant pricing saved</div><div class="succ-s">Fee config for <strong>${name}</strong> applied successfully.</div><div class="succ-id">Merchant ID: <span>${cid}</span></div><button class="btn btn-p" style="margin-top:22px;" onclick="co('addOverlay')">Back to pricing</button></div>`;
+  document.getElementById('dSteps').style.display='none';document.getElementById('adf').style.display='none';
   applyFilters();
 }
 
-render(DATA);
+/* export drawers */
+function openExportDrawer(){document.getElementById('expOverlay').classList.add('open');document.body.style.overflow='hidden';}
+function openGstExportDrawer(){document.getElementById('gstExpOverlay').classList.add('open');document.body.style.overflow='hidden';}
+function selFmt(f){['csv','json','pdf'].forEach(x=>{const el=document.getElementById('ef-'+x);if(el){el.classList.remove('sel');el.querySelector('.eoc-ck').innerHTML='';}});const el=document.getElementById('ef-'+f);if(el){el.classList.add('sel');el.querySelector('.eoc-ck').innerHTML='<i class="ti ti-check" style="font-size:10px;"></i>';}}
+function selScope(s){['all','act'].forEach(k=>{const el=document.getElementById('es-'+k);if(el)el.classList.remove('sel');});const el=document.getElementById('es-'+s);if(el)el.classList.add('sel');}
+function doExport(){const h=['ID','Name','Category','GW%','GWFlat','MDR%','MDRFlat','Refund','Chargeback','Setup','Monthly'];const rows=MERCHANTS.map(m=>[m.id,m.name,m.category,m.gw.pct,m.gw.flat,m.mdr.pct,m.mdr.flat,m.refund,m.chargeback,m.setup,m.monthly]);const csv=[h,...rows].map(r=>r.join(',')).join('\n');const a=document.createElement('a');a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);a.download='merchant_pricing.csv';a.click();co('expOverlay');}
+
+/* ── INIT ── */
+goPage('pricing');
+renderPricing(MERCHANTS);
 </script>
 </body>
 </html>
