@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Merchant Pricing — PayGlocal Partner Program</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blue: #0061e3;
+    --blue-hover: #0052c2;
+    --blue-light: #eff6ff;
+    --blue-mid: #dbeafe;
+    --sidebar-bg: #111c2d;
+    --sidebar-hover: rgba(255,255,255,0.06);
+    --sidebar-active: rgba(0,97,227,0.18);
+    --text-primary: #0f172a;
+    --text-secondary: #64748b;
+    --text-muted: #94a3b8;
+    --border: #e4e9f2;
+    --bg-page: #f1f5fb;
+    --bg-white: #ffffff;
+    --bg-surface: #f8fafc;
+    --radius-sm: 8px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+  }
+
+  html, body { height: 100%; font-family: 'Inter', sans-serif; background: var(--bg-page); color: var(--text-primary); font-size: 14px; line-height: 1.5; }
+
+  /* ── Layout ── */
+  .layout { display: flex; height: 100vh; overflow: hidden; }
+
+  /* ── Sidebar ── */
+  .sidebar {
+    width: 248px; min-width: 248px;
+    background: var(--sidebar-bg);
+    display: flex; flex-direction: column;
+    overflow-y: auto;
+  }
+  .sidebar-header {
+    padding: 20px 18px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    display: flex; align-items: center; gap: 11px;
+  }
+  .logo-mark {
+    width: 34px; height: 34px; border-radius: 9px;
+    background: var(--blue);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700; color: #fff; flex-shrink: 0;
+    letter-spacing: -0.5px;
+  }
+  .logo-name { font-size: 13.5px; font-weight: 600; color: #fff; line-height: 1.25; }
+  .logo-sub { font-size: 11px; color: rgba(255,255,255,0.38); font-weight: 400; }
+
+  .nav { padding: 10px 0; flex: 1; }
+  .nav-section { padding: 14px 18px 5px; font-size: 10px; color: rgba(255,255,255,0.28); text-transform: uppercase; letter-spacing: 0.09em; font-weight: 600; }
+  .nav-link {
+    display: flex; align-items: center; gap: 10px;
+    padding: 9px 18px; font-size: 13px; color: rgba(255,255,255,0.52);
+    cursor: pointer; transition: all 0.15s; border-radius: 0;
+    text-decoration: none;
+  }
+  .nav-link .ti { font-size: 16px; flex-shrink: 0; }
+  .nav-link:hover { background: var(--sidebar-hover); color: rgba(255,255,255,0.88); }
+  .nav-link.active { background: var(--sidebar-active); color: #fff; font-weight: 500; }
+  .nav-link.active .ti { color: #60a5fa; }
+
+  .sidebar-footer {
+    padding: 14px 18px; border-top: 1px solid rgba(255,255,255,0.06);
+    display: flex; align-items: center; gap: 8px;
+    font-size: 11.5px; color: rgba(255,255,255,0.32);
+  }
+  .sidebar-footer .ti { font-size: 13px; color: #4ade80; }
+
+  /* ── Main ── */
+  .main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+
+  /* ── Topbar ── */
+  .topbar {
+    height: 54px; background: var(--bg-white);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 28px; flex-shrink: 0;
+    box-shadow: var(--shadow-sm);
+  }
+  .topbar-left { display: flex; align-items: center; gap: 10px; }
+  .sandbox-badge {
+    font-size: 11px; font-weight: 500;
+    background: #fffbeb; color: #92400e;
+    border: 1px solid #fde68a; padding: 3px 10px;
+    border-radius: 20px;
+  }
+  .topbar-right { display: flex; align-items: center; gap: 16px; }
+  .partner-meta { font-size: 12px; color: var(--text-secondary); }
+  .partner-meta strong { color: var(--text-primary); font-weight: 500; }
+  .topbar-divider { width: 1px; height: 18px; background: var(--border); }
+  .avatar-circle {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--blue); color: #fff;
+    font-size: 12px; font-weight: 600;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+  }
+
+  /* ── Content ── */
+  .content { flex: 1; overflow-y: auto; padding: 28px 28px 40px; }
+
+  /* ── Page title ── */
+  .page-title-row { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 24px; }
+  .page-title h1 { font-size: 20px; font-weight: 600; color: var(--text-primary); letter-spacing: -0.3px; }
+  .page-title p { font-size: 13px; color: var(--text-secondary); margin-top: 3px; }
+
+  /* ── Summary cards ── */
+  .summary-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 24px; }
+  .summary-card {
+    background: var(--bg-white); border: 1px solid var(--border);
+    border-radius: var(--radius-md); padding: 16px 18px;
+    box-shadow: var(--shadow-sm);
+    position: relative; overflow: hidden;
+  }
+  .summary-card::before {
+    content: ''; position: absolute; top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: var(--accent-color, var(--blue));
+    border-radius: 3px 0 0 3px;
+  }
+  .summary-card.c-blue { --accent-color: #0061e3; }
+  .summary-card.c-teal { --accent-color: #0d9488; }
+  .summary-card.c-purple { --accent-color: #7c3aed; }
+  .summary-card.c-amber { --accent-color: #d97706; }
+
+  .sc-icon {
+    width: 32px; height: 32px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px; margin-bottom: 12px;
+  }
+  .sc-icon.blue { background: #eff6ff; color: #1d4ed8; }
+  .sc-icon.teal { background: #f0fdfa; color: #0f766e; }
+  .sc-icon.purple { background: #f5f3ff; color: #6d28d9; }
+  .sc-icon.amber { background: #fffbeb; color: #b45309; }
+
+  .sc-label { font-size: 11px; font-weight: 500; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+  .sc-value { font-size: 22px; font-weight: 700; color: var(--text-primary); letter-spacing: -0.5px; line-height: 1.1; }
+  .sc-sub { font-size: 11.5px; color: var(--text-secondary); margin-top: 4px; }
+
+  /* ── Toolbar ── */
+  .toolbar {
+    background: var(--bg-white); border: 1px solid var(--border);
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+    padding: 14px 18px;
+    display: flex; align-items: center; gap: 12px;
+    border-bottom: none;
+    box-shadow: var(--shadow-sm);
+  }
+  .search-box {
+    position: relative; flex: 1; min-width: 200px;
+  }
+  .search-box .ti {
+    position: absolute; left: 11px; top: 50%; transform: translateY(-50%);
+    font-size: 15px; color: var(--text-muted); pointer-events: none;
+  }
+  .search-box input {
+    width: 100%; height: 38px;
+    border: 1px solid var(--border); border-radius: var(--radius-sm);
+    padding: 0 12px 0 36px; font-size: 13px;
+    color: var(--text-primary); background: var(--bg-surface);
+    outline: none; font-family: 'Inter', sans-serif;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .search-box input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(0,97,227,0.1); background: #fff; }
+  .search-box input::placeholder { color: var(--text-muted); }
+
+  .toolbar-select {
+    height: 38px; border: 1px solid var(--border); border-radius: var(--radius-sm);
+    padding: 0 32px 0 12px; font-size: 13px; color: var(--text-primary);
+    background: var(--bg-surface); outline: none; cursor: pointer;
+    font-family: 'Inter', sans-serif; appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 10px center;
+    transition: border-color 0.15s;
+  }
+  .toolbar-select:focus { border-color: var(--blue); outline: none; }
+
+  .toolbar-spacer { flex: 1; }
+
+  .btn { height: 38px; padding: 0 16px; border-radius: var(--radius-sm); font-size: 13px; font-weight: 500; cursor: pointer; display: inline-flex; align-items: center; gap: 7px; font-family: 'Inter', sans-serif; transition: all 0.15s; border: none; }
+  .btn-primary { background: var(--blue); color: #fff; }
+  .btn-primary:hover { background: var(--blue-hover); }
+  .btn-ghost { background: var(--bg-white); color: var(--text-primary); border: 1px solid var(--border); }
+  .btn-ghost:hover { background: var(--bg-surface); border-color: #c7d2e0; }
+
+  /* ── Table wrapper ── */
+  .table-wrap {
+    background: var(--bg-white);
+    border: 1px solid var(--border);
+    border-top: none;
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* ── Table ── */
+  .pricing-table { width: 100%; border-collapse: collapse; }
+
+  .pricing-table thead tr {
+    background: #f8fafd;
+    border-bottom: 1px solid var(--border);
+  }
+  .pricing-table thead th {
+    padding: 11px 16px; text-align: left;
+    font-size: 11px; font-weight: 600; color: var(--text-secondary);
+    text-transform: uppercase; letter-spacing: 0.07em; white-space: nowrap;
+  }
+
+  .pricing-table tbody tr.m-row {
+    border-bottom: 1px solid #f0f4fa; cursor: pointer;
+    transition: background 0.12s;
+  }
+  .pricing-table tbody tr.m-row:hover { background: #f7faff; }
+  .pricing-table tbody tr.m-row.is-open { background: #f0f6ff; border-bottom-color: #dbeafe; }
+  .pricing-table tbody tr.m-row:last-of-type { border-bottom: none; }
+
+  .pricing-table td { padding: 15px 16px; vertical-align: middle; }
+
+  /* merchant name cell */
+  .m-name-cell { display: flex; align-items: center; gap: 12px; }
+  .m-avatar {
+    width: 36px; height: 36px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12.5px; font-weight: 700; flex-shrink: 0;
+    letter-spacing: -0.3px;
+  }
+  .av-b { background: #dbeafe; color: #1d4ed8; }
+  .av-t { background: #ccfbf1; color: #0f766e; }
+  .av-p { background: #ede9fe; color: #6d28d9; }
+  .av-a { background: #fef3c7; color: #b45309; }
+  .av-g { background: #dcfce7; color: #166534; }
+
+  .m-name { font-size: 13.5px; font-weight: 600; color: var(--text-primary); line-height: 1.2; }
+  .m-id { font-size: 11px; color: var(--text-muted); margin-top: 1px; }
+
+  /* fee chip */
+  .chip {
+    display: inline-flex; align-items: center;
+    font-size: 12px; font-weight: 500; padding: 3px 9px;
+    border-radius: 20px; white-space: nowrap;
+  }
+  .chip-blue { background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
+  .chip-green { background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; }
+  .chip-gray { background: #f8fafc; color: var(--text-secondary); border: 1px solid #e2e8f0; }
+
+  /* status */
+  .status {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 11.5px; font-weight: 500; padding: 4px 10px;
+    border-radius: 20px;
+  }
+  .status-dot { width: 5px; height: 5px; border-radius: 50%; }
+  .s-active { background: #f0fdf4; color: #166534; }
+  .s-active .status-dot { background: #22c55e; }
+  .s-pending { background: #fffbeb; color: #92400e; }
+  .s-pending .status-dot { background: #f59e0b; }
+  .s-inactive { background: #f8fafc; color: var(--text-secondary); }
+  .s-inactive .status-dot { background: #94a3b8; }
+
+  /* expand btn */
+  .expand-btn {
+    width: 30px; height: 30px; border-radius: 8px; border: 1px solid var(--border);
+    background: var(--bg-surface); cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text-muted); font-size: 15px;
+    transition: all 0.2s;
+  }
+  .expand-btn:hover { background: var(--blue-light); border-color: #bfdbfe; color: var(--blue); }
+  .expand-btn.open { background: var(--blue); border-color: var(--blue); color: #fff; transform: rotate(180deg); }
+
+  /* ── Expanded detail ── */
+  .detail-row { display: none; }
+  .detail-row.visible { display: table-row; }
+  .detail-row td { padding: 0 !important; background: #f5f9ff !important; border-bottom: 1px solid #dbeafe; }
+
+  .detail-body { padding: 20px 24px 24px; }
+
+  .detail-tabs { display: flex; gap: 4px; margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 0; }
+  .dtab {
+    padding: 8px 16px; font-size: 13px; font-weight: 500; color: var(--text-secondary);
+    cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px;
+    transition: color 0.15s;
+  }
+  .dtab:hover { color: var(--text-primary); }
+  .dtab.active { color: var(--blue); border-bottom-color: var(--blue); }
+
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* fee grid */
+  .fee-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .fee-box {
+    background: var(--bg-white); border: 1px solid var(--border);
+    border-radius: var(--radius-md); padding: 14px 16px;
+    position: relative; transition: box-shadow 0.15s;
+  }
+  .fee-box:hover { box-shadow: var(--shadow-md); }
+  .fee-box.primary { border-left: 3px solid var(--blue); }
+
+  .fb-icon {
+    width: 30px; height: 30px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; margin-bottom: 10px;
+  }
+  .fbi-blue { background: #eff6ff; color: var(--blue); }
+  .fbi-teal { background: #f0fdfa; color: #0f766e; }
+  .fbi-purple { background: #f5f3ff; color: #6d28d9; }
+  .fbi-amber { background: #fffbeb; color: #b45309; }
+  .fbi-red { background: #fff1f2; color: #be123c; }
+  .fbi-green { background: #f0fdf4; color: #166534; }
+
+  .fb-label { font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+  .fb-value { font-size: 20px; font-weight: 700; color: var(--text-primary); letter-spacing: -0.3px; line-height: 1.1; }
+  .fb-sub { font-size: 11.5px; color: var(--text-secondary); margin-top: 4px; }
+
+  /* recurring table */
+  .recurring-row {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 16px;
+  }
+  .rec-item {
+    background: var(--bg-white); border: 1px solid var(--border);
+    border-radius: var(--radius-md); padding: 14px 16px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .rec-label { font-size: 12px; color: var(--text-secondary); font-weight: 500; display: flex; align-items: center; gap: 7px; }
+  .rec-value { font-size: 16px; font-weight: 700; color: var(--text-primary); }
+
+  /* notes tab */
+  .notes-area { background: var(--bg-white); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 16px; min-height: 80px; font-size: 13px; color: var(--text-secondary); }
+
+  /* detail actions */
+  .detail-actions { display: flex; gap: 10px; margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border); flex-wrap: wrap; }
+
+  /* empty */
+  .empty-row td { text-align: center; padding: 48px 16px; }
+  .empty-inner { display: flex; flex-direction: column; align-items: center; gap: 8px; color: var(--text-muted); }
+  .empty-inner .ti { font-size: 32px; opacity: 0.4; }
+  .empty-inner p { font-size: 13px; }
+
+  /* count badge */
+  .count-badge {
+    font-size: 11px; font-weight: 600; padding: 2px 8px;
+    background: var(--blue-light); color: var(--blue);
+    border-radius: 20px; border: 1px solid #bfdbfe;
+  }
+
+  /* tooltip-style caption */
+  .tbl-caption { font-size: 11px; color: var(--text-muted); display: flex; align-items: center; gap: 4px; }
+
+  @media (max-width: 900px) {
+    .summary-grid { grid-template-columns: repeat(2, 1fr); }
+    .fee-grid { grid-template-columns: repeat(2, 1fr); }
+    .sidebar { width: 60px; min-width: 60px; }
+    .logo-name, .logo-sub, .nav-link span, .sidebar-footer span, .nav-section { display: none; }
+    .nav-link { justify-content: center; padding: 12px; }
+    .sidebar-header { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="layout">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="logo-mark">PG</div>
+      <div>
+        <div class="logo-name">PayGlocal</div>
+        <div class="logo-sub">Partner Program</div>
+      </div>
+    </div>
+    <nav class="nav">
+      <a class="nav-link"><i class="ti ti-home"></i> <span>Home</span></a>
+      <a class="nav-link"><i class="ti ti-user-check"></i> <span>Merchant Activation</span></a>
+      <a class="nav-link"><i class="ti ti-chart-bar"></i> <span>Transaction Overview</span></a>
+      <a class="nav-link"><i class="ti ti-cash"></i> <span>Commissions</span></a>
+      <a class="nav-link active"><i class="ti ti-tag"></i> <span>Pricing</span></a>
+      <div class="nav-section">Account</div>
+      <a class="nav-link"><i class="ti ti-users"></i> <span>Team Management</span></a>
+      <a class="nav-link"><i class="ti ti-key"></i> <span>Key Management</span></a>
+      <a class="nav-link"><i class="ti ti-webhook"></i> <span>Webhooks</span></a>
+    </nav>
+    <div class="sidebar-footer">
+      <i class="ti ti-circle-check"></i>
+      <span>PTR-2021-YL-004</span>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <div class="main">
+
+    <!-- Topbar -->
+    <div class="topbar">
+      <div class="topbar-left">
+        <span class="sandbox-badge">Sandbox</span>
+      </div>
+      <div class="topbar-right">
+        <span class="partner-meta"><strong>Yogesh Lokhande</strong></span>
+        <div class="topbar-divider"></div>
+        <span class="partner-meta">Partner ID PTR-2021-YL-004</span>
+        <div class="avatar-circle">YL</div>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+
+      <!-- Page title -->
+      <div class="page-title-row">
+        <div class="page-title">
+          <h1>Merchant Pricing</h1>
+          <p>Fee configurations across all your onboarded merchants</p>
+        </div>
+        <button class="btn btn-primary"><i class="ti ti-plus" style="font-size:14px;"></i> Add merchant pricing</button>
+      </div>
+
+      <!-- Summary cards -->
+      <div class="summary-grid">
+        <div class="summary-card c-blue">
+          <div class="sc-icon blue"><i class="ti ti-users"></i></div>
+          <div class="sc-label">Total merchants</div>
+          <div class="sc-value">5</div>
+          <div class="sc-sub">4 active · 1 pending</div>
+        </div>
+        <div class="summary-card c-teal">
+          <div class="sc-icon teal"><i class="ti ti-percentage"></i></div>
+          <div class="sc-label">Avg gateway fee</div>
+          <div class="sc-value">1.85%</div>
+          <div class="sc-sub">+ ₹2.50 flat per txn</div>
+        </div>
+        <div class="summary-card c-purple">
+          <div class="sc-icon purple"><i class="ti ti-world"></i></div>
+          <div class="sc-label">Intl card support</div>
+          <div class="sc-value">4 / 5</div>
+          <div class="sc-sub">merchants enabled</div>
+        </div>
+        <div class="summary-card c-amber">
+          <div class="sc-icon amber"><i class="ti ti-refresh"></i></div>
+          <div class="sc-label">Avg refund fee</div>
+          <div class="sc-value">₹24</div>
+          <div class="sc-sub">flat per refund</div>
+        </div>
+      </div>
+
+      <!-- Toolbar + Table -->
+      <div class="toolbar">
+        <div class="search-box">
+          <i class="ti ti-search"></i>
+          <input type="text" id="searchInput" placeholder="Search by merchant name or ID…" oninput="applyFilters()">
+        </div>
+        <select class="toolbar-select" id="statusFilter" onchange="applyFilters()">
+          <option value="">All statuses</option>
+          <option value="active">Active</option>
+          <option value="pending">Pending</option>
+          <option value="inactive">Inactive</option>
+        </select>
+        <select class="toolbar-select" id="intlFilter" onchange="applyFilters()">
+          <option value="">All merchants</option>
+          <option value="yes">Intl enabled</option>
+          <option value="no">Intl disabled</option>
+        </select>
+        <div class="toolbar-spacer"></div>
+        <span id="merchantCount" class="count-badge">5 merchants</span>
+        <button class="btn btn-ghost" onclick="exportCSV()"><i class="ti ti-download" style="font-size:14px;"></i> Export</button>
+      </div>
+
+      <div class="table-wrap">
+        <table class="pricing-table" id="pricingTable">
+          <thead>
+            <tr>
+              <th style="width:36px;"></th>
+              <th>Merchant</th>
+              <th>Category</th>
+              <th>
+                <div class="tbl-caption"><i class="ti ti-building-bank" style="font-size:12px;"></i> Gateway fee</div>
+              </th>
+              <th>
+                <div class="tbl-caption"><i class="ti ti-percentage" style="font-size:12px;"></i> MDR</div>
+              </th>
+              <th>
+                <div class="tbl-caption"><i class="ti ti-world" style="font-size:12px;"></i> Intl cards</div>
+              </th>
+              <th>Status</th>
+              <th style="width:50px;"></th>
+            </tr>
+          </thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+const DATA = [
+  {
+    id:'MRC-2024-KB-001', name:'Karbon', initials:'KB', av:'av-b',
+    category:'B2B SaaS', status:'active',
+    gw:{ pct:'1.75', flat:'2.00' }, mdr:{ pct:'1.90', flat:'3.00' },
+    intl:{ enabled:true, pct:'3.50', flat:'10' },
+    refund:'25', chargeback:'500',
+    setup:'0', monthly:'0', fx:'0.50',
+    notes:'Custom rate negotiated Q3 2023. Volume discount applies above ₹50L/month.'
+  },
+  {
+    id:'MRC-2024-WV-002', name:'Win Vista', initials:'WV', av:'av-t',
+    category:'Travel & Tours', status:'active',
+    gw:{ pct:'2.00', flat:'3.00' }, mdr:{ pct:'2.10', flat:'4.00' },
+    intl:{ enabled:true, pct:'3.80', flat:'12' },
+    refund:'30', chargeback:'600',
+    setup:'5000', monthly:'999', fx:'0.75',
+    notes:'Higher chargeback risk category. Monthly review in place.'
+  },
+  {
+    id:'MRC-2024-NX-003', name:'Nexora Labs', initials:'NX', av:'av-p',
+    category:'EdTech', status:'active',
+    gw:{ pct:'1.80', flat:'2.50' }, mdr:{ pct:'1.95', flat:'2.50' },
+    intl:{ enabled:true, pct:'3.60', flat:'10' },
+    refund:'20', chargeback:'450',
+    setup:'0', monthly:'499', fx:'0.60',
+    notes:''
+  },
+  {
+    id:'MRC-2024-ZP-004', name:'Zappify', initials:'ZP', av:'av-a',
+    category:'E-commerce', status:'pending',
+    gw:{ pct:'1.90', flat:'2.00' }, mdr:{ pct:'2.00', flat:'3.00' },
+    intl:{ enabled:false, pct:'—', flat:'—' },
+    refund:'25', chargeback:'500',
+    setup:'2000', monthly:'0', fx:'N/A',
+    notes:'Onboarding pending KYC approval. Pricing locked until activation.'
+  },
+  {
+    id:'MRC-2023-TF-005', name:'TruFinance', initials:'TF', av:'av-g',
+    category:'NBFC / Lending', status:'active',
+    gw:{ pct:'1.60', flat:'1.50' }, mdr:{ pct:'1.75', flat:'2.00' },
+    intl:{ enabled:true, pct:'3.20', flat:'8' },
+    refund:'20', chargeback:'400',
+    setup:'0', monthly:'1499', fx:'0.45',
+    notes:'Regulated entity. Pricing subject to RBI PA guidelines.'
+  }
+];
+
+let openId = null;
+let openTab = {};
+
+function statusHTML(s) {
+  const map = { active:['s-active','Active'], pending:['s-pending','Pending'], inactive:['s-inactive','Inactive'] };
+  const [cls, label] = map[s] || ['s-inactive','Unknown'];
+  return `<span class="status ${cls}"><span class="status-dot"></span>${label}</span>`;
+}
+
+function intlHTML(m) {
+  if (m.intl.enabled) return `<span class="chip chip-green"><i class="ti ti-check" style="font-size:12px;margin-right:3px;"></i>Enabled</span>`;
+  return `<span class="chip chip-gray">Not enabled</span>`;
+}
+
+function detailHTML(m) {
+  const tab = openTab[m.id] || 'fees';
+  const fw = (s) => tab === s ? 'active' : '';
+  return `
+  <div class="detail-body">
+    <div class="detail-tabs">
+      <div class="dtab ${fw('fees')}" onclick="switchTab('${m.id}','fees')">Fee breakdown</div>
+      <div class="dtab ${fw('recurring')}" onclick="switchTab('${m.id}','recurring')">Setup & recurring</div>
+      <div class="dtab ${fw('notes')}" onclick="switchTab('${m.id}','notes')">Notes</div>
+    </div>
+
+    <div class="tab-panel ${tab==='fees'?'active':''}">
+      <div class="fee-grid">
+        <div class="fee-box primary">
+          <div class="fb-icon fbi-blue"><i class="ti ti-building-bank"></i></div>
+          <div class="fb-label">Payment gateway fee</div>
+          <div class="fb-value">${m.gw.pct}%</div>
+          <div class="fb-sub">+ ₹${m.gw.flat} flat per transaction</div>
+        </div>
+        <div class="fee-box">
+          <div class="fb-icon fbi-teal"><i class="ti ti-percentage"></i></div>
+          <div class="fb-label">MDR</div>
+          <div class="fb-value">${m.mdr.pct}%</div>
+          <div class="fb-sub">+ ₹${m.mdr.flat} flat per transaction</div>
+        </div>
+        <div class="fee-box">
+          <div class="fb-icon fbi-purple"><i class="ti ti-world"></i></div>
+          <div class="fb-label">International card fee</div>
+          <div class="fb-value">${m.intl.enabled ? m.intl.pct+'%' : '—'}</div>
+          <div class="fb-sub">${m.intl.enabled ? '+ ₹'+m.intl.flat+' flat per txn' : 'Not enabled for this merchant'}</div>
+        </div>
+        <div class="fee-box">
+          <div class="fb-icon fbi-amber"><i class="ti ti-refresh"></i></div>
+          <div class="fb-label">Refund fee</div>
+          <div class="fb-value">₹${m.refund}</div>
+          <div class="fb-sub">flat per refund request</div>
+        </div>
+        <div class="fee-box">
+          <div class="fb-icon fbi-red"><i class="ti ti-alert-triangle"></i></div>
+          <div class="fb-label">Chargeback fee</div>
+          <div class="fb-value">₹${m.chargeback}</div>
+          <div class="fb-sub">flat per dispute raised</div>
+        </div>
+        <div class="fee-box">
+          <div class="fb-icon fbi-green"><i class="ti ti-currency-dollar"></i></div>
+          <div class="fb-label">FX spread</div>
+          <div class="fb-value">${m.fx === 'N/A' ? '—' : m.fx+'%'}</div>
+          <div class="fb-sub">on currency conversion</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-panel ${tab==='recurring'?'active':''}">
+      <div class="recurring-row">
+        <div class="rec-item">
+          <div class="rec-label"><i class="ti ti-receipt" style="font-size:15px;color:#6366f1;"></i> Setup fee</div>
+          <div class="rec-value">₹${Number(m.setup).toLocaleString('en-IN')}</div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-label"><i class="ti ti-calendar-repeat" style="font-size:15px;color:#0891b2;"></i> Monthly platform fee</div>
+          <div class="rec-value">₹${Number(m.monthly).toLocaleString('en-IN')}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-panel ${tab==='notes'?'active':''}">
+      <div class="notes-area">${m.notes || '<span style="color:#94a3b8;font-style:italic;">No notes added for this merchant.</span>'}</div>
+    </div>
+
+    <div class="detail-actions">
+      <button class="btn btn-ghost" style="color:var(--blue);border-color:#bfdbfe;background:#eff6ff;"><i class="ti ti-edit" style="font-size:13px;"></i> Edit pricing</button>
+      <button class="btn btn-ghost"><i class="ti ti-file-text" style="font-size:13px;"></i> View agreement</button>
+      <button class="btn btn-ghost"><i class="ti ti-download" style="font-size:13px;"></i> Export config</button>
+      <button class="btn btn-ghost" style="margin-left:auto;color:#be123c;border-color:#fecdd3;background:#fff1f2;"><i class="ti ti-trash" style="font-size:13px;"></i> Remove</button>
+    </div>
+  </div>`;
+}
+
+function rowHTML(m) {
+  return `
+  <tr class="m-row${openId===m.id?' is-open':''}" data-id="${m.id}" onclick="toggleRow('${m.id}')">
+    <td style="padding-left:16px;"><i class="ti ti-building-store" style="font-size:16px;color:#cbd5e1;"></i></td>
+    <td>
+      <div class="m-name-cell">
+        <div class="m-avatar ${m.av}">${m.initials}</div>
+        <div>
+          <div class="m-name">${m.name}</div>
+          <div class="m-id">${m.id}</div>
+        </div>
+      </div>
+    </td>
+    <td style="font-size:12.5px;color:var(--text-secondary);">${m.category}</td>
+    <td><span class="chip chip-blue">${m.gw.pct}% + ₹${m.gw.flat}</span></td>
+    <td><span class="chip chip-blue">${m.mdr.pct}%</span></td>
+    <td>${intlHTML(m)}</td>
+    <td>${statusHTML(m.status)}</td>
+    <td><button class="expand-btn${openId===m.id?' open':''}"><i class="ti ti-chevron-down"></i></button></td>
+  </tr>
+  <tr class="detail-row${openId===m.id?' visible':''}" data-detail="${m.id}">
+    <td colspan="8">${detailHTML(m)}</td>
+  </tr>`;
+}
+
+function render(list) {
+  const tbody = document.getElementById('tableBody');
+  const count = document.getElementById('merchantCount');
+  count.textContent = list.length + ' merchant' + (list.length !== 1 ? 's' : '');
+  if (list.length === 0) {
+    tbody.innerHTML = `<tr class="empty-row"><td colspan="8"><div class="empty-inner"><i class="ti ti-search"></i><p>No merchants match your filters</p></div></td></tr>`;
+    return;
+  }
+  tbody.innerHTML = list.map(rowHTML).join('');
+}
+
+function toggleRow(id) {
+  if (openId === id) { openId = null; } else { openId = id; }
+  applyFilters();
+}
+
+function switchTab(id, tab) {
+  openTab[id] = tab;
+  applyFilters();
+}
+
+function applyFilters() {
+  const q = document.getElementById('searchInput').value.toLowerCase().trim();
+  const st = document.getElementById('statusFilter').value;
+  const il = document.getElementById('intlFilter').value;
+  let list = DATA.filter(m => {
+    if (q && !m.name.toLowerCase().includes(q) && !m.id.toLowerCase().includes(q) && !m.category.toLowerCase().includes(q)) return false;
+    if (st && m.status !== st) return false;
+    if (il === 'yes' && !m.intl.enabled) return false;
+    if (il === 'no' && m.intl.enabled) return false;
+    return true;
+  });
+  render(list);
+}
+
+function exportCSV() {
+  const headers = ['ID','Name','Category','Gateway %','Gateway Flat','MDR %','MDR Flat','Intl Enabled','Intl %','Refund Fee','Chargeback Fee','Setup Fee','Monthly Fee','FX Spread','Status'];
+  const rows = DATA.map(m => [m.id,m.name,m.category,m.gw.pct,m.gw.flat,m.mdr.pct,m.mdr.flat,m.intl.enabled,m.intl.pct,m.refund,m.chargeback,m.setup,m.monthly,m.fx,m.status]);
+  const csv = [headers, ...rows].map(r => r.join(',')).join('\n');
+  const a = document.createElement('a');
+  a.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
+  a.download = 'merchant_pricing.csv';
+  a.click();
+}
+
+render(DATA);
+</script>
+</body>
+</html>
